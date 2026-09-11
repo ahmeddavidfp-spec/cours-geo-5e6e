@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geographie 6e - Module 7 : Conflits d'usage</title>
+<link rel="stylesheet" href="shared/engine.css">
+</head>
+<body>
+<div id="app-root"></div>
+<script>window.GEO_ASSET_BASE = 'assets/maps/';</script>
+<script src="shared/engine.js"></script>
+<script>
+const theorySlides = [
+{
+  title: "1. Objectifs de ce module",
+  html: `
+    <p>Un meme espace peut interesser plusieurs acteurs, avec des intentions differentes. Ce module etudie ce qui se passe quand ces interets deviennent incompatibles : le <strong>conflit d'usage</strong>. Il approfondit aussi les concepts de <strong>developpement</strong> et de <strong>developpement durable</strong> vus en 5e, appliques cette fois a l'amenagement du territoire.</p>
+    <div class="callout">
+      <strong>A la fin de ce module, tu seras capable de :</strong>
+      <ul class="clean">
+        <li>definir la notion de conflit d'usage ;</li>
+        <li>identifier les acteurs concernes par un amenagement et leurs intentions ;</li>
+        <li>mettre en evidence les effets d'un amenagement sur l'environnement en termes de developpement et de developpement durable ;</li>
+        <li>analyser un cas belge concret : l'aeroport de Bruxelles-National.</li>
+      </ul>
+    </div>
+  `
+},
+{
+  title: "2. Le concept de conflit d'usage",
+  html: `
+    <div class="callout">
+      <strong>Conflit d'usage</strong> : situation dans laquelle plusieurs fonctions ou plusieurs acteurs revendiquent un meme espace pour des usages incompatibles entre eux.
+    </div>
+    <p>Un conflit d'usage nait presque toujours de la rencontre entre plusieurs <strong>acteurs</strong> aux <strong>intentions</strong> differentes.</p>
+    <table class="data">
+      <tr><th>Type d'acteur</th><th>Intention typique</th></tr>
+      <tr><td>Pouvoirs publics (Etat, Region, commune)</td><td>Developper l'emploi et l'economie, assurer des services, arbitrer entre les autres acteurs.</td></tr>
+      <tr><td>Entreprises / promoteurs</td><td>Rentabiliser un investissement, developper une activite economique.</td></tr>
+      <tr><td>Habitants / riverains</td><td>Preserver leur cadre de vie (calme, qualite de l'air, paysage, valeur immobiliere).</td></tr>
+      <tr><td>Associations environnementales</td><td>Proteger les ecosystemes et les ressources pour le long terme.</td></tr>
+    </table>
+    <div class="callout piege">
+      <strong>Piege frequent :</strong> il n'y a pas d'acteur qui a systematiquement « raison » ou « tort ». Chaque acteur defend une intention legitime de son point de vue ; c'est justement cette diversite d'intentions legitimes qui cree le conflit d'usage.
+    </div>
+  `
+},
+{
+  title: "3. Etude de cas : l'aeroport de Bruxelles-National",
+  html: `
+    <p>L'aeroport de Bruxelles-National, a Zaventem, illustre bien un conflit d'usage durable en Belgique : les trajectoires des avions survolent des zones habitees de plusieurs communes, dans plusieurs regions, ce qui oppose depuis des annees plusieurs acteurs.</p>
+    <div id="theory-map-3"></div>
+    <table class="data">
+      <tr><th>Acteur</th><th>Intention</th></tr>
+      <tr><td>Gestionnaire de l'aeroport, compagnies aeriennes</td><td>Maintenir et developper le trafic aerien, source d'emplois et d'activite economique.</td></tr>
+      <tr><td>Habitants des communes survolees</td><td>Reduire les nuisances sonores et ameliorer leur qualite de vie.</td></tr>
+      <tr><td>Autorites regionales et communales</td><td>Arbitrer entre developpement economique et bien-etre de la population, parfois avec des interets regionaux divergents.</td></tr>
+    </table>
+    <div class="callout">
+      Ce cas montre qu'un amenagement (l'aeroport) qui favorise clairement le <strong>developpement</strong> economique (emplois, connexions internationales) peut en meme temps degrader la qualite de vie d'une partie de la population : c'est un conflit d'usage qui dure depuis des decennies, precisement parce qu'aucune solution ne satisfait pleinement tous les acteurs.
+    </div>
+  `,
+  postRender: function(helpers){
+    helpers.renderWorldMap(document.getElementById('theory-map-3'), {
+      crop: { lonMin: -2, lonMax: 10, latMin: 48, latMax: 54 },
+      markers: [ {lon:4.48, lat:50.90, color:'#a3283f', r:14, label:'Bruxelles-National', dx:20, dy:0} ]
+    });
+  }
+},
+{
+  title: "4. Un amenagement peut aussi reduire un conflit futur : l'eolien en mer du Nord",
+  html: `
+    <p>A l'inverse, certains amenagements sont concus des le depart pour limiter les conflits d'usage et repondre a un enjeu de developpement durable. C'est le cas des <strong>parcs eoliens offshore</strong> installes dans la partie belge de la mer du Nord.</p>
+    <div id="theory-map-4"></div>
+    <table class="data">
+      <tr><th>Avantage (developpement durable)</th><th>Limite ou conflit possible</th></tr>
+      <tr><td>Production d'electricite renouvelable, reduction de la dependance aux hydrocarbures importes (rappel module 1)</td><td>Cout d'installation eleve, impact possible sur la navigation et la pêche, paysage marin modifie.</td></tr>
+    </table>
+    <div class="callout">
+      Meme un amenagement globalement favorable au developpement durable peut generer des tensions avec d'autres usages de l'espace (peche, navigation, tourisme cotier) : le conflit d'usage n'est jamais totalement absent, il change simplement de nature.
+    </div>
+  `,
+  postRender: function(helpers){
+    helpers.renderWorldMap(document.getElementById('theory-map-4'), {
+      crop: { lonMin: -2, lonMax: 10, latMin: 48, latMax: 54 },
+      markers: [ {lon:2.9, lat:51.6, color:'#1f6f5c', r:14, label:'Eolien offshore belge', dx:20, dy:0} ]
+    });
+  }
+},
+{
+  title: "5. Reperes spatiaux a connaitre pour ce module",
+  html: `
+    <table class="data">
+      <tr><th>Lieu</th><th>Ce qu'il faut retenir</th></tr>
+      <tr><td>Bruxelles-National (Zaventem)</td><td>Conflit d'usage durable lie aux nuisances sonores du trafic aerien.</td></tr>
+      <tr><td>Mer du Nord belge</td><td>Parcs eoliens offshore, exemple d'amenagement oriente developpement durable.</td></tr>
+    </table>
+    <div class="callout">
+      Ces deux cas montrent les deux faces d'un meme enjeu : tout amenagement du territoire implique des acteurs aux interets parfois opposes, et la geographie sert a rendre ces tensions explicites plutot qu'a les ignorer.
+    </div>
+    <p><strong>Tu as termine la theorie de ce module.</strong> Passe maintenant a l'entrainement.</p>
+  `
+}
+];
+
+const flashcardBank = [
+  {front:"Conflit d'usage", back:"Situation ou plusieurs fonctions ou acteurs revendiquent un meme espace pour des usages incompatibles."},
+  {front:"Acteur (amenagement du territoire)", back:"Personne, entreprise ou institution qui a un interet ou un role dans un amenagement (pouvoirs publics, entreprises, habitants, associations)."},
+  {front:"Intention d'un acteur", back:"Ce que cet acteur cherche a obtenir ou a proteger a travers l'amenagement (ex : emploi, calme, protection de l'environnement)."},
+  {front:"Le conflit d'usage de Bruxelles-National", back:"Opposition entre le developpement du trafic aerien et les nuisances sonores subies par les habitants des communes survolees."},
+  {front:"Pourquoi les parcs eoliens offshore belges sont lies au developpement durable", back:"Ils produisent de l'electricite renouvelable et reduisent la dependance aux hydrocarbures importes."},
+  {front:"Un conflit d'usage a-t-il toujours un acteur qui a 'raison' ?", back:"Non : chaque acteur defend une intention legitime de son point de vue, ce qui explique la difficulte a resoudre le conflit."}
+];
+
+const gameRounds = [
+  {kind:'world', prompt:"Zoom Belgique : clique sur l'aeroport de Bruxelles-National (Zaventem).", lon:4.48, lat:50.90, tol:20,
+    crop:{ lonMin:-2, lonMax:10, latMin:48, latMax:54 }},
+  {kind:'world', prompt:"Zoom Belgique : clique sur la zone d'eolien offshore en mer du Nord.", lon:2.9, lat:51.6, tol:24,
+    crop:{ lonMin:-2, lonMax:10, latMin:48, latMax:54 }},
+  {kind:'belgium', prompt:"Clique sur la Region de Bruxelles-Capitale.", region:'Bruxelles'}
+];
+
+const exerciseBank = [
+  { type:'mcq', points:1,
+    prompt:"Un conflit d'usage nait quand :",
+    options:["un seul acteur est concerne par un amenagement","plusieurs acteurs revendiquent un meme espace pour des usages incompatibles","un territoire n'a aucune fonction","un amenagement est termine depuis longtemps"],
+    correct:1,
+    explain:"C'est la definition meme du conflit d'usage : des usages incompatibles sur un meme espace."
+  },
+  { type:'tf', points:1,
+    prompt:"Dans un conflit d'usage, il existe toujours un acteur qui a objectivement raison et un autre qui a tort.",
+    correct:false,
+    explain:"Faux : chaque acteur defend une intention legitime de son point de vue, ce qui rend le conflit difficile a trancher simplement."
+  },
+  { type:'match', points:4,
+    prompt:"Associe chaque acteur a son intention typique.",
+    items:[
+      {left:"Compagnies aeriennes", options:["Reduire les nuisances sonores","Developper le trafic et l'activite economique","Proteger les ecosystemes sur le long terme","Arbitrer entre les autres acteurs"], correct:"Developper le trafic et l'activite economique"},
+      {left:"Habitants des communes survolees", options:["Reduire les nuisances sonores","Developper le trafic et l'activite economique","Proteger les ecosystemes sur le long terme","Arbitrer entre les autres acteurs"], correct:"Reduire les nuisances sonores"},
+      {left:"Associations environnementales", options:["Reduire les nuisances sonores","Developper le trafic et l'activite economique","Proteger les ecosystemes sur le long terme","Arbitrer entre les autres acteurs"], correct:"Proteger les ecosystemes sur le long terme"},
+      {left:"Autorites regionales et communales", options:["Reduire les nuisances sonores","Developper le trafic et l'activite economique","Proteger les ecosystemes sur le long terme","Arbitrer entre les autres acteurs"], correct:"Arbitrer entre les autres acteurs"}
+    ],
+    explain:"Quatre grandes familles d'acteurs reviennent dans la plupart des conflits d'usage etudies en geographie."
+  },
+  { type:'classify', points:3,
+    prompt:"Pour chaque element lie aux parcs eoliens offshore belges, indique s'il releve plutot du developpement durable ou d'une limite/conflit possible.",
+    classifyOptions:["Developpement durable","Limite ou conflit possible"],
+    items:[
+      {text:"Production d'electricite renouvelable", correct:"Developpement durable"},
+      {text:"Reduction de la dependance aux hydrocarbures importes", correct:"Developpement durable"},
+      {text:"Impact possible sur la navigation et la peche", correct:"Limite ou conflit possible"},
+      {text:"Paysage marin modifie", correct:"Limite ou conflit possible"}
+    ],
+    explain:"Meme un amenagement favorable au developpement durable peut generer des tensions avec d'autres usages de l'espace."
+  },
+  { type:'data', points:2,
+    prompt:"D'apres la theorie (section 3), a propos du conflit d'usage de Bruxelles-National :",
+    tableHtml:`<table class="data"><tr><th>Acteur</th><th>Intention</th></tr>
+      <tr><td>Gestionnaire de l'aeroport</td><td>Developper le trafic aerien</td></tr>
+      <tr><td>Habitants survoles</td><td>Reduire les nuisances sonores</td></tr></table>`,
+    subquestions:[
+      {prompt:"Quelle est l'intention principale du gestionnaire de l'aeroport ?", accepted:["developper le trafic","developper le trafic aerien","trafic aerien"]},
+      {prompt:"Quelle est l'intention principale des habitants des communes survolees ?", accepted:["reduire les nuisances sonores","nuisances sonores","reduire le bruit"]}
+    ],
+    explain:"Ces deux intentions opposees expliquent pourquoi ce conflit d'usage dure depuis des decennies."
+  },
+  { type:'open', points:3,
+    prompt:"Explique, en 4 a 5 phrases, pourquoi le cas de l'aeroport de Bruxelles-National est un bon exemple de conflit d'usage, en identifiant au moins deux acteurs et leurs intentions.",
+    keywordGroups:[["conflit","usage"],["habitants","riverains"],["aeroport","trafic","compagnies"],["nuisances","bruit"]],
+    modelAnswer:"L'aeroport de Bruxelles-National illustre un conflit d'usage parce que plusieurs acteurs revendiquent le meme espace aerien pour des usages incompatibles. Le gestionnaire de l'aeroport et les compagnies aeriennes cherchent a developper le trafic, source d'emplois et de connexions internationales pour la Belgique. Les habitants des communes survolees, eux, cherchent avant tout a reduire les nuisances sonores qui degradent leur qualite de vie au quotidien. Les autorites regionales et communales doivent arbitrer entre ces interets legitimes mais opposes, ce qui explique que ce conflit d'usage dure depuis des decennies sans solution qui satisfasse pleinement tous les acteurs."
+  }
+];
+
+const examBank = [
+  { type:'mcq', points:1,
+    prompt:"Un conflit d'usage se definit comme :",
+    options:["l'absence totale d'acteurs sur un territoire","plusieurs acteurs qui revendiquent un meme espace pour des usages incompatibles","un amenagement termine sans probleme","une fonction unique sur un territoire"],
+    correct:1
+  },
+  { type:'mcq', points:1,
+    prompt:"A Bruxelles-National, les habitants des communes survolees cherchent surtout a :",
+    options:["developper le trafic aerien","reduire les nuisances sonores","construire de nouvelles pistes","augmenter le nombre de vols"],
+    correct:1
+  },
+  { type:'mcq', points:1,
+    prompt:"Les parcs eoliens offshore belges contribuent surtout a :",
+    options:["augmenter la dependance aux hydrocarbures importes","produire de l'electricite renouvelable","reduire le trafic maritime a zero","supprimer tout conflit d'usage en mer"],
+    correct:1
+  },
+  { type:'mcq', points:1,
+    prompt:"Dans un conflit d'usage, en general :",
+    options:["un seul acteur a une intention legitime","tous les acteurs ont une intention legitime de leur point de vue","aucun acteur n'a d'interet reel","le conflit se resout toujours immediatement"],
+    correct:1
+  },
+  { type:'mcq', points:1,
+    prompt:"Meme un amenagement favorable au developpement durable, comme l'eolien offshore, peut :",
+    options:["ne jamais generer aucune tension","generer des tensions avec d'autres usages de l'espace (peche, navigation)","supprimer completement les conflits d'usage","etre installe sans aucun cout"],
+    correct:1
+  },
+  { type:'tf', points:1,
+    prompt:"Un conflit d'usage implique toujours au moins deux acteurs aux intentions differentes.",
+    correct:true
+  },
+  { type:'tf', points:1,
+    prompt:"Le conflit d'usage lie a Bruxelles-National a ete resolu de maniere definitive il y a longtemps.",
+    correct:false
+  },
+  { type:'match', points:4,
+    prompt:"Associe chaque acteur a son intention typique.",
+    items:[
+      {left:"Compagnies aeriennes", options:["Reduire les nuisances sonores","Developper le trafic et l'activite economique","Proteger les ecosystemes sur le long terme","Arbitrer entre les autres acteurs"], correct:"Developper le trafic et l'activite economique"},
+      {left:"Habitants des communes survolees", options:["Reduire les nuisances sonores","Developper le trafic et l'activite economique","Proteger les ecosystemes sur le long terme","Arbitrer entre les autres acteurs"], correct:"Reduire les nuisances sonores"},
+      {left:"Associations environnementales", options:["Reduire les nuisances sonores","Developper le trafic et l'activite economique","Proteger les ecosystemes sur le long terme","Arbitrer entre les autres acteurs"], correct:"Proteger les ecosystemes sur le long terme"},
+      {left:"Autorites regionales et communales", options:["Reduire les nuisances sonores","Developper le trafic et l'activite economique","Proteger les ecosystemes sur le long terme","Arbitrer entre les autres acteurs"], correct:"Arbitrer entre les autres acteurs"}
+    ]
+  },
+  { type:'data', points:2,
+    prompt:"D'apres la theorie (section 3), a propos du conflit d'usage de Bruxelles-National :",
+    tableHtml:`<table class="data"><tr><th>Acteur</th><th>Intention</th></tr>
+      <tr><td>Gestionnaire de l'aeroport</td><td>Developper le trafic aerien</td></tr>
+      <tr><td>Habitants survoles</td><td>Reduire les nuisances sonores</td></tr></table>`,
+    subquestions:[
+      {prompt:"Quel type d'acteur cherche a arbitrer entre developpement economique et bien-etre de la population ?", accepted:["autorites","autorites regionales","autorites communales","pouvoirs publics"]},
+      {prompt:"Quel type de nuisance est au coeur de ce conflit d'usage ?", accepted:["sonore","nuisances sonores","bruit"]}
+    ]
+  },
+  { type:'classify', points:3,
+    prompt:"Pour chaque element lie aux parcs eoliens offshore belges, indique s'il releve plutot du developpement durable ou d'une limite/conflit possible.",
+    classifyOptions:["Developpement durable","Limite ou conflit possible"],
+    items:[
+      {text:"Production d'electricite renouvelable", correct:"Developpement durable"},
+      {text:"Reduction de la dependance aux hydrocarbures importes", correct:"Developpement durable"},
+      {text:"Impact possible sur la navigation et la peche", correct:"Limite ou conflit possible"},
+      {text:"Paysage marin modifie", correct:"Limite ou conflit possible"}
+    ]
+  },
+  { type:'open', points:3,
+    prompt:"Explique, en 4 a 5 phrases, en quoi les parcs eoliens offshore belges illustrent a la fois le developpement durable et un conflit d'usage possible.",
+    keywordGroups:[["developpement durable","renouvelable"],["conflit","usage","tension"],["peche","navigation"],["mer du nord","eolien"]],
+    modelAnswer:"Les parcs eoliens offshore installes dans la mer du Nord belge illustrent bien le developpement durable, car ils produisent de l'electricite renouvelable et reduisent la dependance du pays aux hydrocarbures importes, un enjeu deja vu au module 1. Cependant, cet amenagement n'est pas sans consequence sur les autres usages de cet espace maritime : il peut entrer en tension avec la navigation commerciale et avec les zones de peche traditionnelles. Le paysage marin s'en trouve aussi modifie, ce qui peut deplaire a certains acteurs, comme le tourisme cotier. Ce cas montre qu'un amenagement globalement positif pour le developpement durable n'echappe pas totalement a la logique du conflit d'usage, il en change simplement la nature."
+  }
+];
+
+GeoEngine.initModule({
+  id: 'm7-conflits-developpement',
+  eyebrow: "Geographie &middot; 6e annee &middot; Module 7/8 &middot; Reseau libre confessionnel (FESeC)",
+  title: "Conflits d'usage, developpement durable",
+  subtitle: "Troisieme module du programme de 6e annee. 60% requis pour debloquer le module suivant.",
+  introHtml: `
+    <p>Ce module etudie la notion de <strong>conflit d'usage</strong> : ce qui se passe quand plusieurs acteurs, aux intentions differentes, revendiquent un meme espace. Deux cas belges concrets : l'aeroport de Bruxelles-National (conflit durable) et l'eolien offshore en mer du Nord (developpement durable, avec ses propres limites).</p>
+    <div class="callout warn">
+      <strong>Precision honnete :</strong> comme pour les modules precedents, il n'existe pas de banque officielle d'examens de geographie en FWB. Les questions sont construites a partir des types de taches du programme FESeC. Le cas de Bruxelles-National est presente de maniere factuelle et neutre, comme un exemple geographique de conflit d'usage, sans prendre parti dans le debat.
+    </div>
+  `,
+  examTitle: "conflits d'usage et developpement durable",
+  passThreshold: 60,
+  theorySlides, flashcardBank, gameRounds, exerciseBank, examBank,
+  hubHref: 'index.html',
+  nextHref: 'module-8.html',
+  nextTitle: 'Reperes belges et europeens, synthese finale',
+  footerHtml: 'Module 7/8 (6e) &middot; programme officiel FESeC 2018 (D/2018/7362/3/15) &middot; ressource privee pour etude a domicile.<br>Fonds de carte : "BlankMap-World-Equirectangular", John Harvey, domaine public (CC0), Wikimedia Commons &middot; "Regions of Belgium", Ssolbergj, CC BY 3.0, Wikimedia Commons.'
+});
+</script>
+</body>
+</html>

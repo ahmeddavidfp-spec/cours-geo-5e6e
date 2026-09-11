@@ -405,7 +405,19 @@ function initModule(cfg){
   }
   function renderNextModuleCard(){
     const el = root.querySelector('#next-module-card');
-    if(!cfg.nextHref){ el.innerHTML=''; return; }
+    if(!cfg.nextHref){
+      if(hasPassed()){
+        setModulePassed(cfg.id, bestScorePct());
+        el.innerHTML = `<div class="unlock-card">
+          <h3 style="margin-top:0;">Parcours termine, felicitations !</h3>
+          <p>Tu as reussi le dernier module du programme de 5e et 6e annees. Retourne a l'accueil pour revoir l'ensemble de ton parcours.</p>
+          <div class="btn-row" style="justify-content:center;"><a class="btn" href="${cfg.hubHref || 'index.html'}" style="text-decoration:none;">Retour a l'accueil</a></div>
+        </div>`;
+      } else {
+        el.innerHTML = '';
+      }
+      return;
+    }
     if(hasPassed()){
       setModulePassed(cfg.id, bestScorePct());
       el.innerHTML = `<div class="unlock-card">

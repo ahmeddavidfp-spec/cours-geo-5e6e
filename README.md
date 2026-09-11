@@ -48,10 +48,11 @@ qui permet a la page d'accueil de debloquer les modules dans l'ordre. Tout
 persiste tant que l'eleve revient sur le meme lien avec le meme navigateur.
 Pas de backend, pas de compte : c'est volontairement simple.
 
-## A venir
+## Statut
 
-- Modules 3 et 4 (5e) : flux de population/migrations, amenagement/developpement durable.
-- Modules 5 a 8 (6e) : amenagement du territoire.
+Les 8 modules (5e et 6e annees completes) sont construits, testes et en ligne.
+Le module 8 termine sur une synthese qui reprend des questions de l'ensemble
+du parcours, en preparation du CESS.
 
 ## Deploiement
 

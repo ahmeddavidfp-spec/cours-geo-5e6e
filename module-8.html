@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geographie 6e - Module 8 : Synthese finale</title>
+<link rel="stylesheet" href="shared/engine.css">
+</head>
+<body>
+<div id="app-root"></div>
+<script>window.GEO_ASSET_BASE = 'assets/maps/';</script>
+<script src="shared/engine.js"></script>
+<script>
+const theorySlides = [
+{
+  title: "1. Objectifs de ce module",
+  html: `
+    <p>Voici le dernier module du parcours. Il complete tes reperes belges et europeens, puis fait la <strong>synthese</strong> de tout ce que tu as appris depuis le module 1, en vue de tes evaluations de fin de 6e et de ton CESS.</p>
+    <div class="callout">
+      <strong>A la fin de ce module, tu seras capable de :</strong>
+      <ul class="clean">
+        <li>situer les aires urbaines des pays limitrophes de la Belgique et quelques grandes aires urbaines europeennes supplementaires ;</li>
+        <li>repérer les principales divisions administratives de l'Union europeenne et de la Belgique ;</li>
+        <li>remobiliser, dans un meme raisonnement, les concepts vus dans les huit modules du parcours ;</li>
+        <li>structurer une reponse de geographie complete, comme attendu en evaluation.</li>
+      </ul>
+    </div>
+  `
+},
+{
+  title: "2. Divisions administratives : Union europeenne et Belgique",
+  html: `
+    <table class="data">
+      <tr><th>Echelle</th><th>Reperes a connaitre</th></tr>
+      <tr><td>Union europeenne</td><td>Les pays membres de l'UE ; la Belgique en fait partie depuis sa creation (les six pays fondateurs en 1957 incluaient la Belgique).</td></tr>
+      <tr><td>Belgique</td><td>Trois regions (flamande, wallonne, Bruxelles-Capitale), trois communautes (flamande, francaise, germanophone), une frontiere linguistique qui les separe.</td></tr>
+    </table>
+    <div class="callout piege">
+      <strong>Piege frequent :</strong> les <em>regions</em> belges (competences territoriales : economie, environnement, amenagement du territoire) et les <em>communautes</em> (competences liees aux personnes : enseignement, culture, sante) sont deux decoupages differents qui ne se superposent pas exactement, notamment a Bruxelles.
+    </div>
+  `
+},
+{
+  title: "3. Les aires urbaines des pays limitrophes de la Belgique",
+  html: `
+    <p>La Belgique est un petit pays entoure de grandes aires urbaines etrangeres toutes proches de sa frontiere, ce qui cree des liens economiques et des migrations pendulaires transfrontalieres importantes (rappel du vocabulaire du module 5).</p>
+    <div id="theory-map-3"></div>
+    <p class="map-caption">Carte reelle, zoom sur la Belgique et ses voisins directs.</p>
+    <table class="data">
+      <tr><th>Aire urbaine</th><th>Pays</th></tr>
+      <tr><td>Lille</td><td>France</td></tr>
+      <tr><td>Aix-la-Chapelle (Aachen)</td><td>Allemagne</td></tr>
+      <tr><td>Maastricht</td><td>Pays-Bas</td></tr>
+      <tr><td>Luxembourg (ville)</td><td>Grand-Duche de Luxembourg</td></tr>
+    </table>
+    <div class="callout">
+      Beaucoup d'habitants de ces regions frontalieres travaillent de l'autre cote de la frontiere : c'est un exemple concret de bassin d'emploi qui deborde les limites d'un seul pays.
+    </div>
+  `,
+  postRender: function(helpers){
+    helpers.renderWorldMap(document.getElementById('theory-map-3'), {
+      crop: { lonMin: -2, lonMax: 10, latMin: 47.5, latMax: 54 },
+      markers: [
+        {lon:3.06, lat:50.63, color:'#a3283f', r:12, label:'Lille', dx:16, dy:14},
+        {lon:6.08, lat:50.78, color:'#a3283f', r:12, label:'Aix-la-Chapelle', dx:16, dy:0},
+        {lon:5.69, lat:50.85, color:'#a3283f', r:12, label:'Maastricht', dx:16, dy:-14},
+        {lon:6.13, lat:49.61, color:'#a3283f', r:12, label:'Luxembourg', dx:16, dy:10},
+        {lon:4.35, lat:50.85, color:'#1f6f5c', r:12, label:'Bruxelles', dx:-140, dy:0}
+      ]
+    });
+  }
+},
+{
+  title: "4. Completer le tour d'Europe",
+  html: `
+    <p>Le module 5 t'a fait situer Paris, Londres, Berlin et Madrid. Voici quatre autres grandes aires urbaines europeennes a connaitre.</p>
+    <div id="theory-map-4"></div>
+    <p class="map-caption">Carte reelle, quatre grandes aires urbaines europeennes supplementaires.</p>
+  `,
+  postRender: function(helpers){
+    helpers.renderWorldMap(document.getElementById('theory-map-4'), {
+      crop: { lonMin: -10, lonMax: 40, latMin: 34, latMax: 60 },
+      markers: [
+        {lon:12.5, lat:41.9, color:'#1f6f5c', r:16, label:'Rome', dx:20, dy:0},
+        {lon:2.17, lat:41.38, color:'#1f6f5c', r:16, label:'Barcelone', dx:20, dy:14},
+        {lon:37.6, lat:55.75, color:'#1f6f5c', r:16, label:'Moscou', dx:20, dy:0},
+        {lon:23.7, lat:37.98, color:'#1f6f5c', r:16, label:'Athenes', dx:20, dy:14}
+      ]
+    });
+  }
+},
+{
+  title: "5. Synthese : les concepts du parcours",
+  html: `
+    <p>Chaque module a mobilise un ou plusieurs concepts geographiques. Les revoir ensemble t'aide a construire une vision d'ensemble du programme.</p>
+    <table class="data">
+      <tr><th>Module</th><th>Concept(s) principal(aux)</th></tr>
+      <tr><td>1. Ressources energetiques</td><td>Atouts / contraintes spatiales</td></tr>
+      <tr><td>2. Mondialisation</td><td>Flux, direction et intensite, mondialisation</td></tr>
+      <tr><td>3. Migrations</td><td>Facteurs de repulsion / d'attraction, migration</td></tr>
+      <tr><td>4. Amenagements et risques</td><td>Developpement / developpement durable, risque</td></tr>
+      <tr><td>5. La ville</td><td>Fonctions, aire urbaine, modeles spatiaux</td></tr>
+      <tr><td>6. Justifier un amenagement</td><td>Atouts / contraintes / potentialites / vulnerabilites, ensemble</td></tr>
+      <tr><td>7. Conflits d'usage</td><td>Acteurs, intentions, conflit d'usage</td></tr>
+    </table>
+    <div class="callout">
+      Une bonne reponse d'examen mobilise generalement <strong>plusieurs</strong> de ces concepts a la fois, et les illustre avec des exemples precis et localises (les reperes que tu as appris module apres module).
+    </div>
+  `
+},
+{
+  title: "6. Se preparer pour le CESS",
+  html: `
+    <p>Il n'existe pas d'epreuve externe specifique de geographie pour le CESS (rappel de l'introduction du module 1) : ta reussite depend des evaluations internes organisees par ton etablissement tout au long de la 6e annee. Voici quelques conseils pour t'y preparer au mieux.</p>
+    <ol class="clean">
+      <li><strong>Revise par concept, pas seulement par module.</strong> Sois capable d'expliquer « atouts/contraintes » ou « developpement durable » avec des exemples pris dans plusieurs modules differents.</li>
+      <li><strong>Entraine-toi a decrire une repartition spatiale</strong> a partir d'un document que tu n'as jamais vu : c'est la competence la plus souvent evaluee (echelle, vocabulaire, reperes, comparaison).</li>
+      <li><strong>Structure toujours tes reponses ecrites</strong> : decrire, puis expliquer, puis (si demande) juger ou justifier avec des arguments precis.</li>
+      <li><strong>Repasse les examens de ce parcours</strong> autant de fois que necessaire : ils sont bases sur les memes types de taches que le programme officiel.</li>
+    </ol>
+    <div class="callout">
+      <strong>Bravo d'etre arrive jusqu'ici.</strong> Tu as parcouru l'ensemble du programme de geographie de 5e et 6e annees, de la repartition mondiale des ressources jusqu'aux conflits d'usage a l'echelle belge. L'examen final de ce module reprend des questions issues de tout le parcours.
+    </div>
+  `
+}
+];
+
+const flashcardBank = [
+  {front:"Les 3 regions belges", back:"Region flamande, Region wallonne, Region de Bruxelles-Capitale."},
+  {front:"Les 3 communautes belges", back:"Communaute flamande, Communaute francaise, Communaute germanophone."},
+  {front:"Difference entre region et communaute en Belgique", back:"Les regions gerent le territoire (economie, environnement) ; les communautes gerent les personnes (enseignement, culture, sante)."},
+  {front:"Lille", back:"Grande aire urbaine du nord de la France, proche de la frontiere belge."},
+  {front:"Aix-la-Chapelle (Aachen)", back:"Grande aire urbaine allemande, proche de la frontiere belge (Region wallonne et Region flamande)."},
+  {front:"Maastricht", back:"Aire urbaine neerlandaise, proche de la frontiere belge (province de Liege)."},
+  {front:"Luxembourg (ville)", back:"Capitale du Grand-Duche de Luxembourg, proche de la frontiere wallonne."},
+  {front:"La Belgique et l'Union europeenne", back:"La Belgique est l'un des six pays fondateurs de la construction europeenne (1957)."}
+];
+
+const gameRounds = [
+  {kind:'world', prompt:"Zoom Belgique et voisins : clique sur Lille (France).", lon:3.06, lat:50.63, tol:20,
+    crop:{ lonMin:-2, lonMax:10, latMin:47.5, latMax:54 }},
+  {kind:'world', prompt:"Zoom Belgique et voisins : clique sur Aix-la-Chapelle (Allemagne).", lon:6.08, lat:50.78, tol:20,
+    crop:{ lonMin:-2, lonMax:10, latMin:47.5, latMax:54 }},
+  {kind:'world', prompt:"Zoom Belgique et voisins : clique sur Luxembourg-ville.", lon:6.13, lat:49.61, tol:20,
+    crop:{ lonMin:-2, lonMax:10, latMin:47.5, latMax:54 }},
+  {kind:'world', prompt:"Zoom Europe : clique sur Rome.", lon:12.5, lat:41.9, tol:22,
+    crop:{ lonMin:-10, lonMax:40, latMin:34, latMax:60 }},
+  {kind:'world', prompt:"Zoom Europe : clique sur Athenes.", lon:23.7, lat:37.98, tol:22,
+    crop:{ lonMin:-10, lonMax:40, latMin:34, latMax:60 }},
+  {kind:'world', prompt:"Zoom Europe : clique sur Moscou.", lon:37.6, lat:55.75, tol:24,
+    crop:{ lonMin:-10, lonMax:40, latMin:34, latMax:60 }}
+];
+
+const exerciseBank = [
+  { type:'mcq', points:1,
+    prompt:"Les regions belges gerent surtout :",
+    options:["l'enseignement et la culture","le territoire (economie, environnement, amenagement)","uniquement les relations internationales","le systeme judiciaire federal"],
+    correct:1,
+    explain:"Les regions gerent le territoire ; les communautes gerent les personnes (enseignement, culture, sante)."
+  },
+  { type:'mcq', points:1,
+    prompt:"La Belgique fait partie de l'Union europeenne depuis :",
+    options:["les annees 1990 seulement","sa creation, en tant que pays fondateur (1957)","elle n'en fait pas partie","les annees 2000"],
+    correct:1,
+    explain:"La Belgique est l'un des six pays fondateurs de la construction europeenne."
+  },
+  { type:'match', points:4,
+    prompt:"Associe chaque aire urbaine frontaliere a son pays.",
+    items:[
+      {left:"Lille", options:["France","Allemagne","Pays-Bas","Luxembourg"], correct:"France"},
+      {left:"Aix-la-Chapelle", options:["France","Allemagne","Pays-Bas","Luxembourg"], correct:"Allemagne"},
+      {left:"Maastricht", options:["France","Allemagne","Pays-Bas","Luxembourg"], correct:"Pays-Bas"},
+      {left:"Luxembourg-ville", options:["France","Allemagne","Pays-Bas","Luxembourg"], correct:"Luxembourg"}
+    ],
+    explain:"Ces quatre aires urbaines encadrent la Belgique sur ses frontieres francaise, allemande, neerlandaise et luxembourgeoise."
+  },
+  { type:'classify', points:3,
+    prompt:"Synthese : pour chaque concept, indique dans quel type de module il a ete introduit en priorite (5e ou 6e).",
+    classifyOptions:["5e annee","6e annee"],
+    items:[
+      {text:"Atouts et contraintes spatiales", correct:"5e annee"},
+      {text:"Modeles spatiaux de la ville (mono/polycentrisme)", correct:"6e annee"},
+      {text:"Mondialisation et flux de marchandises", correct:"5e annee"},
+      {text:"Conflit d'usage et acteurs", correct:"6e annee"}
+    ],
+    explain:"La 5e annee porte sur les ressources et les populations a l'echelle mondiale ; la 6e annee remobilise ces acquis pour l'amenagement du territoire, surtout belge et europeen."
+  },
+  { type:'data', points:2,
+    prompt:"D'apres la theorie (section 3), a propos des aires urbaines frontalieres :",
+    tableHtml:`<table class="data"><tr><th>Aire urbaine</th><th>Pays</th></tr>
+      <tr><td>Lille</td><td>France</td></tr>
+      <tr><td>Aix-la-Chapelle</td><td>Allemagne</td></tr>
+      <tr><td>Maastricht</td><td>Pays-Bas</td></tr>
+      <tr><td>Luxembourg-ville</td><td>Luxembourg</td></tr></table>`,
+    subquestions:[
+      {prompt:"Dans quel pays se trouve Maastricht ?", accepted:["pays-bas","pays bas"]},
+      {prompt:"Dans quel pays se trouve Aix-la-Chapelle ?", accepted:["allemagne"]}
+    ],
+    explain:"Ces reperes completent la carte mentale de la Belgique et de ses voisins directs."
+  },
+  { type:'open', points:3,
+    prompt:"En te basant sur l'ensemble du parcours (modules 1 a 7), choisis DEUX concepts differents (par exemple atouts/contraintes et conflit d'usage) et explique en 5 a 6 phrases comment ils peuvent s'appliquer ensemble a un meme amenagement, au choix.",
+    keywordGroups:[["atout","contrainte","potentialite","vulnerabilite","developpement","migration","mondialisation","conflit"],["exemple"],["amenagement"],["module"]],
+    modelAnswer:"On peut par exemple combiner le concept d'atout/contrainte et celui de conflit d'usage a propos du port d'Anvers. Le port beneficie d'un atout de site majeur, l'acces direct a la mer du Nord, ce qui explique son developpement continu. Mais son extension se heurte a une contrainte d'espace disponible, ce qui peut generer un conflit d'usage avec les habitants et les zones naturelles proches. Les autorites regionales doivent alors arbitrer entre l'interet economique de l'extension (developpement) et la protection du cadre de vie et des ecosystemes (developpement durable). Cet exemple montre que les concepts vus separement dans les differents modules du parcours doivent en realite etre mobilises ensemble pour analyser un cas reel."
+  }
+];
+
+const examBank = [
+  { type:'mcq', points:1,
+    prompt:"Rappel module 1 : l'energie primaire est :",
+    options:["obtenue apres transformation","telle qu'on la trouve directement dans la nature","toujours renouvelable","toujours importee"],
+    correct:1
+  },
+  { type:'mcq', points:1,
+    prompt:"Rappel module 2 : le canal de Suez relie :",
+    options:["l'Atlantique et le Pacifique","la Mediterranee et la mer Rouge","la mer du Nord et la Baltique","l'ocean Indien et le Pacifique"],
+    correct:1
+  },
+  { type:'mcq', points:1,
+    prompt:"Rappel module 3 : un facteur d'attraction (pull) concerne :",
+    options:["le lieu de depart","le lieu de destination","uniquement le climat","uniquement les salaires"],
+    correct:1
+  },
+  { type:'mcq', points:1,
+    prompt:"Rappel module 5 : une aire urbaine organisee autour d'un seul centre dominant illustre :",
+    options:["le polycentrisme","le monocentrisme","le conflit d'usage","le developpement durable"],
+    correct:1
+  },
+  { type:'mcq', points:1,
+    prompt:"Rappel module 7 : un conflit d'usage nait quand :",
+    options:["un seul acteur est concerne","plusieurs acteurs revendiquent un meme espace pour des usages incompatibles","un territoire est vide","un amenagement est abandonne"],
+    correct:1
+  },
+  { type:'tf', points:1,
+    prompt:"La Belgique est l'un des six pays fondateurs de l'Union europeenne.",
+    correct:true
+  },
+  { type:'tf', points:1,
+    prompt:"Les regions et les communautes belges couvrent exactement les memes competences.",
+    correct:false
+  },
+  { type:'match', points:4,
+    prompt:"Associe chaque aire urbaine frontaliere a son pays.",
+    items:[
+      {left:"Lille", options:["France","Allemagne","Pays-Bas","Luxembourg"], correct:"France"},
+      {left:"Aix-la-Chapelle", options:["France","Allemagne","Pays-Bas","Luxembourg"], correct:"Allemagne"},
+      {left:"Maastricht", options:["France","Allemagne","Pays-Bas","Luxembourg"], correct:"Pays-Bas"},
+      {left:"Luxembourg-ville", options:["France","Allemagne","Pays-Bas","Luxembourg"], correct:"Luxembourg"}
+    ]
+  },
+  { type:'data', points:2,
+    prompt:"Synthese, a partir de reperes vus dans le parcours :",
+    tableHtml:`<table class="data"><tr><th>Lieu</th><th>Enjeu principal</th></tr>
+      <tr><td>Republique democratique du Congo</td><td>Cobalt (module 1)</td></tr>
+      <tr><td>Bruxelles-National</td><td>Conflit d'usage (module 7)</td></tr></table>`,
+    subquestions:[
+      {prompt:"Quelle ressource est associee a la Republique democratique du Congo dans ce parcours ?", accepted:["cobalt"]},
+      {prompt:"Quel type d'enjeu est associe a Bruxelles-National ?", accepted:["conflit d'usage","conflit","nuisances sonores"]}
+    ]
+  },
+  { type:'classify', points:3,
+    prompt:"Synthese : pour chaque concept, indique dans quel type de module il a ete introduit en priorite (5e ou 6e).",
+    classifyOptions:["5e annee","6e annee"],
+    items:[
+      {text:"Atouts et contraintes spatiales", correct:"5e annee"},
+      {text:"Modeles spatiaux de la ville (mono/polycentrisme)", correct:"6e annee"},
+      {text:"Mondialisation et flux de marchandises", correct:"5e annee"},
+      {text:"Conflit d'usage et acteurs", correct:"6e annee"}
+    ]
+  },
+  { type:'open', points:3,
+    prompt:"Pour conclure ce parcours, choisis le module qui t'a le plus marque et explique en 5 a 6 phrases ce qu'il t'a appris, en citant au moins un concept et un repere spatial precis.",
+    keywordGroups:[["module"],["concept","atout","contrainte","mondialisation","migration","developpement","conflit","modele"],["repere","carte","pays","ville"],["exemple"]],
+    modelAnswer:"Cette question est ouverte et personnelle : il n'y a pas de reponse unique attendue. Une bonne reponse nomme clairement un module precis, explique avec ses propres mots au moins un concept aborde dans ce module (par exemple les facteurs de repulsion et d'attraction pour les migrations), et l'illustre avec un repere spatial precis et correctement situe (par exemple le corridor entre l'Inde et les pays du Golfe). Une reponse plus complete relie ce module a un autre moment du parcours, pour montrer que les concepts geographiques se construisent progressivement d'un module a l'autre plutot que de maniere isolee."
+  }
+];
+
+GeoEngine.initModule({
+  id: 'm8-synthese-europe',
+  eyebrow: "Geographie &middot; 6e annee &middot; Module 8/8 &middot; Reseau libre confessionnel (FESeC)",
+  title: "Reperes belges et europeens, synthese finale",
+  subtitle: "Dernier module du parcours. 60% requis pour valider le module et terminer le programme.",
+  introHtml: `
+    <p>Ce dernier module complete tes reperes belges et europeens (aires urbaines frontalieres, divisions administratives), puis propose une <strong>synthese</strong> de l'ensemble du parcours, des ressources energetiques du module 1 jusqu'aux conflits d'usage du module 7. L'examen final reprend des questions de tout le programme.</p>
+    <div class="callout warn">
+      <strong>Precision honnete :</strong> comme pour tous les modules precedents, il n'existe pas de banque officielle d'examens de geographie en FWB. Les questions sont construites a partir des types de taches du programme FESeC.
+    </div>
+  `,
+  examTitle: "synthese finale, 5e et 6e annees",
+  passThreshold: 60,
+  theorySlides, flashcardBank, gameRounds, exerciseBank, examBank,
+  hubHref: 'index.html',
+  nextHref: '',
+  nextTitle: '',
+  footerHtml: 'Module 8/8 (6e) &middot; programme officiel FESeC 2018 (D/2018/7362/3/15) &middot; ressource privee pour etude a domicile.<br>Fonds de carte : "BlankMap-World-Equirectangular", John Harvey, domaine public (CC0), Wikimedia Commons.'
+});
+</script>
+</body>
+</html>
