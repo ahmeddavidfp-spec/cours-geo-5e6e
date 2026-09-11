@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geographie 5e - Module 4 : Amenagements et developpement durable</title>
+<link rel="stylesheet" href="shared/engine.css">
+</head>
+<body>
+<div id="app-root"></div>
+<script>window.GEO_ASSET_BASE = 'assets/maps/';</script>
+<script src="shared/engine.js"></script>
+<script>
+const theorySlides = [
+{
+  title: "1. Objectifs de ce module",
+  html: `
+    <p>Ce quatrieme et dernier module de 5e annee reunit tout ce que tu as appris : la repartition inegale des ressources (module 1), les flux de marchandises (module 2) et les flux de population (module 3) poussent les Etats et les entreprises a <strong>amenager le territoire</strong> pour faciliter l'acces aux ressources. Mais ces amenagements ont des effets, parfois positifs, parfois negatifs, sur l'environnement et sur les risques.</p>
+    <div class="callout">
+      <strong>A la fin de ce module, tu seras capable de :</strong>
+      <ul class="clean">
+        <li>distinguer les concepts de developpement et de developpement durable ;</li>
+        <li>expliquer comment un amenagement peut aggraver un risque naturel ou technologique ;</li>
+        <li>identifier des espaces a risque en te referant a un modele spatial (la tectonique des plaques) ;</li>
+        <li>discuter le dilemme entre developpement economique et developpement durable a partir d'un cas concret.</li>
+      </ul>
+    </div>
+  `
+},
+{
+  title: "2. Developpement et developpement durable",
+  html: `
+    <table class="data">
+      <tr><th>Concept</th><th>Definition</th></tr>
+      <tr><td><strong>Developpement</strong></td><td>L'amelioration des conditions de vie d'une population (acces aux ressources, aux services, au niveau de vie).</td></tr>
+      <tr><td><strong>Developpement durable</strong></td><td>Un developpement qui repond aux besoins du present sans compromettre la capacite des generations futures a repondre aux leurs.</td></tr>
+    </table>
+    <div class="callout">
+      Un amenagement peut favoriser le developpement immediat d'un territoire (emplois, revenus, acces a une ressource) tout en posant question pour le developpement durable, si son cout environnemental futur est trop eleve (epuisement d'une ressource, pollution, aggravation d'un risque).
+    </div>
+    <div class="callout piege">
+      <strong>Piege frequent :</strong> « developpement durable » ne signifie pas « ecologique » au sens strict. C'est un equilibre a trouver entre les besoins economiques et sociaux d'aujourd'hui et la preservation des ressources pour demain. Un amenagement peut etre bon pour le developpement et mauvais pour le developpement durable, ou l'inverse.
+    </div>
+  `
+},
+{
+  title: "3. Un amenagement peut aggraver un risque",
+  html: `
+    <p>Pour acceder a une ressource (module 1), l'Homme construit des amenagements : plateformes petrolieres en mer, mines a ciel ouvert, barrages... Ces amenagements peuvent <strong>aggraver un risque</strong> deja present sur le territoire.</p>
+    <div id="theory-map-3"></div>
+    <p class="map-caption">Carte reelle : lieu de la maree noire de Deepwater Horizon (2010), golfe du Mexique.</p>
+    <div class="callout">
+      <strong>Etude de cas : Deepwater Horizon (golfe du Mexique, 2010).</strong> L'explosion d'une plateforme de forage petrolier en eaux profondes a provoque l'une des plus importantes marees noires de l'histoire, avec des consequences durables sur les ecosystemes marins et cotiers. Cet amenagement, construit pour repondre a la demande mondiale de petrole (module 1), a transforme un risque technologique potentiel en catastrophe reelle.
+    </div>
+    <p>Ce cas illustre le concept de <strong>vulnerabilite</strong> : plus un amenagement est complexe et expose (ici, un forage en eaux tres profondes), plus le risque technologique associe est eleve si un incident survient.</p>
+  `,
+  postRender: function(helpers){
+    helpers.renderWorldMap(document.getElementById('theory-map-3'), {
+      markers: [
+        {lon:-88.4, lat:28.7, color:'#a3283f', r:20, label:'Deepwater Horizon (2010)', dx:25, dy:0}
+      ]
+    });
+  }
+},
+{
+  title: "4. Developpement contre developpement durable : le cas du lithium",
+  html: `
+    <p>Le lithium, tu l'as vu au module 1, est essentiel pour fabriquer les batteries (vehicules electriques, stockage d'energie renouvelable). L'Australie en est le premier producteur, mais une grande partie du lithium sud-americain provient de <strong>salars</strong>, des lacs sales asseches, notamment au Chili.</p>
+    <div id="theory-map-4"></div>
+    <p class="map-caption">Carte reelle : le Salar d'Atacama, dans le desert du meme nom, au Chili.</p>
+    <div class="callout">
+      <strong>Etude de cas : le Salar d'Atacama (Chili).</strong> Pour extraire le lithium dissous dans la saumure du sous-sol, il faut pomper de grandes quantites d'eau dans l'une des regions les plus arides du monde. Cet amenagement favorise le <strong>developpement</strong> economique local et mondial (emplois, revenus, transition energetique mondiale), mais menace la disponibilite en eau pour les communautes locales et les ecosystemes du desert : c'est un enjeu de <strong>developpement durable</strong>.
+    </div>
+    <p>Ce cas montre bien qu'un meme amenagement peut etre juge positivement sous l'angle du developpement (il cree de la richesse, il sert la transition energetique mondiale) et de maniere plus critique sous l'angle du developpement durable (il fragilise une ressource locale rare, l'eau).</p>
+  `,
+  postRender: function(helpers){
+    helpers.renderWorldMap(document.getElementById('theory-map-4'), {
+      markers: [
+        {lon:-68.2, lat:-23.5, color:'#b5541c', r:18, label:"Salar d'Atacama", dx:25, dy:0}
+      ]
+    });
+  }
+},
+{
+  title: "5. Identifier des espaces a risque grace a un modele spatial",
+  html: `
+    <p>Rappel du 2e degre : le modele de la <strong>tectonique des plaques</strong> permet d'expliquer la repartition des seismes et des volcans dans le monde, notamment le long des zones de collision et de subduction entre plaques.</p>
+    <div class="callout">
+      Un amenagement construit dans une zone de fort risque tectonique (centrale nucleaire, grand barrage, plateforme petroliere) doit tenir compte de ce risque naturel en plus du risque technologique qu'il cree lui-meme. Le cumul des deux peut rendre un territoire particulierement vulnerable.
+    </div>
+    <p>C'est exactement la demarche attendue : face a un nouvel amenagement, tu dois pouvoir te demander « ce territoire est-il, en plus, expose a un risque naturel connu (via le modele de la tectonique des plaques) ? » avant de juger de sa pertinence.</p>
+    <div class="callout piege">
+      <strong>Piege frequent :</strong> le risque technologique (lie a l'amenagement humain) et le risque naturel (lie a la tectonique, au climat...) sont deux choses differentes, mais ils peuvent se cumuler sur un meme territoire et s'aggraver mutuellement.
+    </div>
+  `
+},
+{
+  title: "6. Reperes spatiaux a connaitre pour ce module",
+  html: `
+    <table class="data">
+      <tr><th>Lieu</th><th>Ce qu'il faut retenir</th></tr>
+      <tr><td>Golfe du Mexique</td><td>Lieu de la maree noire de Deepwater Horizon (2010), exemple de risque technologique lie a un amenagement petrolier.</td></tr>
+      <tr><td>Salar d'Atacama (Chili)</td><td>Extraction de lithium en zone desertique : dilemme developpement / developpement durable lie a l'eau.</td></tr>
+    </table>
+    <div class="callout">
+      Ce module cloture la 5e annee. Tu as maintenant construit une vraie carte mentale du monde a travers quatre entrees : les ressources (module 1), les flux de marchandises (module 2), les flux de population (module 3) et les amenagements/risques/developpement durable (module 4). La 6e annee va remobiliser tous ces acquis pour etudier l'amenagement du territoire, notamment a l'echelle belge et europeenne.
+    </div>
+    <p><strong>Tu as termine la theorie de ce module, et la theorie de toute la 5e annee.</strong> Passe maintenant a l'entrainement, puis a l'examen final de 5e.</p>
+  `
+}
+];
+
+const flashcardBank = [
+  {front:"Developpement", back:"Amelioration des conditions de vie d'une population (acces aux ressources, aux services, au niveau de vie)."},
+  {front:"Developpement durable", back:"Developpement qui repond aux besoins du present sans compromettre la capacite des generations futures a repondre aux leurs."},
+  {front:"Risque technologique", back:"Risque lie a une activite ou un amenagement humain (ex : plateforme petroliere, usine)."},
+  {front:"Maree noire de Deepwater Horizon", back:"Catastrophe petroliere de 2010 dans le golfe du Mexique, suite a l'explosion d'une plateforme de forage en eaux profondes."},
+  {front:"Salar", back:"Lac sale aseche, riche en mineraux dissous (dont le lithium) ; le Salar d'Atacama au Chili en est un exemple."},
+  {front:"Pourquoi l'extraction du lithium au Salar d'Atacama pose un probleme de developpement durable", back:"Elle necessite de grandes quantites d'eau dans une region tres aride, menacant les ressources en eau locales."},
+  {front:"Le modele spatial utile pour reperer les zones a risque sismique/volcanique", back:"Le modele de la tectonique des plaques."},
+  {front:"Vulnerabilite (rappel)", back:"Degre d'exposition d'un territoire ou d'une population face a un aléa."}
+];
+
+const gameRounds = [
+  {kind:'world', prompt:"Clique sur le golfe du Mexique (lieu de la catastrophe de Deepwater Horizon).", lon:-88.4, lat:28.7, tol:90},
+  {kind:'world', prompt:"Clique sur le Chili (Salar d'Atacama, extraction de lithium).", lon:-70, lat:-30, tol:90},
+  {kind:'world', prompt:"Clique sur le Japon (zone de tres forte activite sismique et volcanique).", lon:138, lat:37, tol:100},
+  {kind:'world', prompt:"Clique sur l'Indonesie (autre zone de tres forte activite tectonique).", lon:118, lat:-2, tol:110},
+  {kind:'world', prompt:"Clique sur la Norvege (rappel module 1 : plateformes petrolieres en mer du Nord).", lon:10, lat:62, tol:75},
+  {kind:'world', prompt:"Clique sur la Republique democratique du Congo (rappel module 1 : cobalt).", lon:23, lat:-2, tol:95}
+];
+
+const exerciseBank = [
+  { type:'mcq', points:1,
+    prompt:"Le developpement durable se definit comme un developpement qui :",
+    options:["interdit toute exploitation de ressources naturelles","repond aux besoins du present sans compromettre ceux des generations futures","se limite aux energies renouvelables","est decide uniquement par des associations ecologistes"],
+    correct:1,
+    explain:"C'est la definition de reference : un equilibre entre besoins actuels et capacite des generations futures a repondre aux leurs."
+  },
+  { type:'tf', points:1,
+    prompt:"Un amenagement qui favorise le developpement economique est toujours bon pour le developpement durable.",
+    correct:false,
+    explain:"Faux : un amenagement peut favoriser le developpement immediat tout en posant un probleme de developpement durable (cas du lithium au Chili)."
+  },
+  { type:'match', points:4,
+    prompt:"Associe chaque lieu a l'enjeu principal etudie dans ce module.",
+    items:[
+      {left:"Golfe du Mexique", options:["Extraction de lithium et enjeu de l'eau","Maree noire liee a un forage petrolier","Zone de tres forte activite tectonique","Reserves de petrole et gaz en mer du Nord"], correct:"Maree noire liee a un forage petrolier"},
+      {left:"Salar d'Atacama (Chili)", options:["Extraction de lithium et enjeu de l'eau","Maree noire liee a un forage petrolier","Zone de tres forte activite tectonique","Reserves de petrole et gaz en mer du Nord"], correct:"Extraction de lithium et enjeu de l'eau"},
+      {left:"Japon", options:["Extraction de lithium et enjeu de l'eau","Maree noire liee a un forage petrolier","Zone de tres forte activite tectonique","Reserves de petrole et gaz en mer du Nord"], correct:"Zone de tres forte activite tectonique"},
+      {left:"Norvege", options:["Extraction de lithium et enjeu de l'eau","Maree noire liee a un forage petrolier","Zone de tres forte activite tectonique","Reserves de petrole et gaz en mer du Nord"], correct:"Reserves de petrole et gaz en mer du Nord"}
+    ],
+    explain:"Ces quatre cas couvrent l'essentiel du module : risque technologique, dilemme developpement/durabilite, modele spatial tectonique, et rappel du module 1."
+  },
+  { type:'classify', points:3,
+    prompt:"Pour chacune des consequences suivantes de l'extraction du lithium au Salar d'Atacama, indique si elle releve plutot du developpement ou d'une menace pour le developpement durable.",
+    classifyOptions:["Developpement","Menace pour le developpement durable"],
+    items:[
+      {text:"Creation d'emplois locaux lies a l'exploitation miniere", correct:"Developpement"},
+      {text:"Pompage de grandes quantites d'eau dans une region tres aride", correct:"Menace pour le developpement durable"},
+      {text:"Revenus lies a l'exportation du lithium vers l'industrie des batteries", correct:"Developpement"},
+      {text:"Risque d'epuisement des ressources en eau pour les communautes locales", correct:"Menace pour le developpement durable"}
+    ],
+    explain:"Le meme amenagement genere a la fois des effets positifs pour le developpement et des risques pour le developpement durable : c'est le coeur du dilemme etudie dans ce module."
+  },
+  { type:'data', points:2,
+    prompt:"Reponds a partir de l'etude de cas vue dans la theorie (section 3).",
+    tableHtml:`<table class="data"><tr><th>Element</th><th>Information</th></tr>
+      <tr><td>Evenement</td><td>Explosion d'une plateforme de forage petrolier</td></tr>
+      <tr><td>Annee</td><td>2010</td></tr>
+      <tr><td>Lieu</td><td>Golfe du Mexique</td></tr></table>`,
+    subquestions:[
+      {prompt:"En quelle annee a eu lieu la catastrophe de Deepwater Horizon ?", accepted:["2010"]},
+      {prompt:"Dans quel golfe cette catastrophe a-t-elle eu lieu ?", accepted:["golfe du mexique","mexique"]}
+    ],
+    explain:"Deepwater Horizon, 2010, golfe du Mexique : un cas de reference pour illustrer le risque technologique lie a l'exploitation petroliere."
+  },
+  { type:'open', points:3,
+    prompt:"Explique, en 4 a 5 phrases, pourquoi l'extraction du lithium au Chili illustre bien la difference entre developpement et developpement durable.",
+    keywordGroups:[["developpement"],["developpement durable","durable"],["eau"],["lithium","chili","atacama"]],
+    modelAnswer:"L'extraction du lithium au Salar d'Atacama, au Chili, favorise le developpement : elle cree des emplois et des revenus, et fournit une matiere premiere essentielle a la transition energetique mondiale (batteries). Mais ce meme amenagement pose un probleme de developpement durable, car il necessite de grandes quantites d'eau dans une des regions les plus arides du monde, menacant la disponibilite de cette ressource pour les communautes locales et les ecosystemes desertiques a long terme. Ce cas montre qu'un amenagement peut etre positif pour le developpement immediat tout en fragilisant les ressources dont dependront les generations futures, ce qui est exactement la tension au coeur du developpement durable."
+  }
+];
+
+const examBank = [
+  { type:'mcq', points:1,
+    prompt:"Le developpement, en geographie, designe :",
+    options:["uniquement la croissance du PIB","l'amelioration des conditions de vie d'une population","le nombre d'habitants d'un territoire","la surface amenagee d'un territoire"],
+    correct:1
+  },
+  { type:'mcq', points:1,
+    prompt:"La catastrophe de Deepwater Horizon (2010) a eu lieu :",
+    options:["dans le golfe Persique","dans le golfe du Mexique","en mer du Nord","dans le detroit de Malacca"],
+    correct:1
+  },
+  { type:'mcq', points:1,
+    prompt:"L'extraction de lithium au Salar d'Atacama pose surtout un probleme de developpement durable lie a :",
+    options:["la deforestation","l'eau","la surpopulation","le bruit"],
+    correct:1
+  },
+  { type:'mcq', points:1,
+    prompt:"Le modele spatial utile pour identifier les zones a fort risque sismique et volcanique est :",
+    options:["le modele de la ville","le modele de la tectonique des plaques","le modele des courants marins","le modele du bilan radiatif"],
+    correct:1
+  },
+  { type:'mcq', points:1,
+    prompt:"Un amenagement construit pour acceder a une ressource peut :",
+    options:["seulement ameliorer la situation, jamais l'aggraver","aggraver un risque naturel ou technologique deja present","n'avoir aucun lien avec les risques","supprimer automatiquement tous les risques existants"],
+    correct:1
+  },
+  { type:'tf', points:1,
+    prompt:"Le developpement durable signifie qu'il faut arreter toute exploitation de ressources naturelles.",
+    correct:false
+  },
+  { type:'tf', points:1,
+    prompt:"Le risque technologique et le risque naturel ne peuvent jamais se cumuler sur un meme territoire.",
+    correct:false
+  },
+  { type:'match', points:4,
+    prompt:"Associe chaque lieu a l'enjeu principal etudie dans ce module.",
+    items:[
+      {left:"Golfe du Mexique", options:["Extraction de lithium et enjeu de l'eau","Maree noire liee a un forage petrolier","Zone de tres forte activite tectonique","Reserves de petrole et gaz en mer du Nord"], correct:"Maree noire liee a un forage petrolier"},
+      {left:"Salar d'Atacama (Chili)", options:["Extraction de lithium et enjeu de l'eau","Maree noire liee a un forage petrolier","Zone de tres forte activite tectonique","Reserves de petrole et gaz en mer du Nord"], correct:"Extraction de lithium et enjeu de l'eau"},
+      {left:"Japon", options:["Extraction de lithium et enjeu de l'eau","Maree noire liee a un forage petrolier","Zone de tres forte activite tectonique","Reserves de petrole et gaz en mer du Nord"], correct:"Zone de tres forte activite tectonique"},
+      {left:"Norvege", options:["Extraction de lithium et enjeu de l'eau","Maree noire liee a un forage petrolier","Zone de tres forte activite tectonique","Reserves de petrole et gaz en mer du Nord"], correct:"Reserves de petrole et gaz en mer du Nord"}
+    ]
+  },
+  { type:'classify', points:3,
+    prompt:"Pour chacune des consequences suivantes de l'extraction du lithium au Salar d'Atacama, indique si elle releve plutot du developpement ou d'une menace pour le developpement durable.",
+    classifyOptions:["Developpement","Menace pour le developpement durable"],
+    items:[
+      {text:"Creation d'emplois locaux lies a l'exploitation miniere", correct:"Developpement"},
+      {text:"Pompage de grandes quantites d'eau dans une region tres aride", correct:"Menace pour le developpement durable"},
+      {text:"Revenus lies a l'exportation du lithium vers l'industrie des batteries", correct:"Developpement"},
+      {text:"Risque d'epuisement des ressources en eau pour les communautes locales", correct:"Menace pour le developpement durable"}
+    ]
+  },
+  { type:'data', points:2,
+    prompt:"Reponds a partir de l'etude de cas vue dans la theorie (section 3).",
+    tableHtml:`<table class="data"><tr><th>Element</th><th>Information</th></tr>
+      <tr><td>Evenement</td><td>Explosion d'une plateforme de forage petrolier</td></tr>
+      <tr><td>Annee</td><td>2010</td></tr>
+      <tr><td>Lieu</td><td>Golfe du Mexique</td></tr></table>`,
+    subquestions:[
+      {prompt:"Quel type d'amenagement est a l'origine de la catastrophe de Deepwater Horizon ?", accepted:["plateforme petroliere","plateforme de forage","forage petrolier","plateforme"]},
+      {prompt:"En quelle annee a eu lieu cette catastrophe ?", accepted:["2010"]}
+    ]
+  },
+  { type:'open', points:3,
+    prompt:"En t'appuyant sur l'exemple de Deepwater Horizon, explique en 4 a 5 phrases comment un amenagement construit pour acceder a une ressource peut aggraver un risque technologique.",
+    keywordGroups:[["amenagement","plateforme"],["risque"],["deepwater","golfe du mexique"],["petrole","ressource"]],
+    modelAnswer:"Un amenagement construit pour acceder a une ressource, comme une plateforme de forage petrolier, peut aggraver un risque technologique deja present sur le territoire. C'est ce qui s'est produit avec Deepwater Horizon, dans le golfe du Mexique en 2010 : l'explosion de cette plateforme, construite pour extraire du petrole en eaux tres profondes, a provoque une maree noire majeure. Plus un amenagement est complexe et expose, comme un forage en tres grande profondeur, plus sa vulnerabilite face a un incident technologique est elevee. Ce cas montre que l'acces a une ressource (module 1) a un cout potentiel en termes de risque, qu'il faut mettre en balance avec les benefices attendus de l'amenagement."
+  }
+];
+
+GeoEngine.initModule({
+  id: 'm4-amenagement-durable',
+  eyebrow: "Geographie &middot; 5e annee &middot; Module 4/4 &middot; Reseau libre confessionnel (FESeC)",
+  title: "Amenagements, risques et developpement durable",
+  subtitle: "Quatrieme et dernier module du programme de 5e annee. 60% requis pour debloquer la 6e annee.",
+  introHtml: `
+    <p>Ce module cloture la 5e annee en reunissant tous les acquis precedents : comment un amenagement construit pour acceder a une ressource (module 1) peut aggraver un risque naturel ou technologique, et comment il pose la question du developpement durable. Deux etudes de cas concretes : la maree noire de Deepwater Horizon et l'extraction de lithium au Chili.</p>
+    <div class="callout warn">
+      <strong>Precision honnete :</strong> comme pour les modules precedents, il n'existe pas de banque officielle d'examens de geographie en FWB. Les questions sont construites a partir des types de taches du programme FESeC.
+    </div>
+  `,
+  examTitle: "amenagements, risques et developpement durable",
+  passThreshold: 60,
+  theorySlides, flashcardBank, gameRounds, exerciseBank, examBank,
+  hubHref: 'index.html',
+  nextHref: 'module-5.html',
+  nextTitle: 'La ville, ses fonctions et ses modeles spatiaux (6e annee)',
+  footerHtml: 'Module 4/4 (5e) &middot; programme officiel FESeC 2018 (D/2018/7362/3/15) &middot; ressource privee pour etude a domicile.<br>Fonds de carte : "BlankMap-World-Equirectangular", John Harvey, domaine public (CC0), Wikimedia Commons.'
+});
+</script>
+</body>
+</html>

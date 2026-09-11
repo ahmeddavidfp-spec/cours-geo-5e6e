@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geographie 5e - Module 3 : Migrations</title>
+<link rel="stylesheet" href="shared/engine.css">
+</head>
+<body>
+<div id="app-root"></div>
+<script>window.GEO_ASSET_BASE = 'assets/maps/';</script>
+<script src="shared/engine.js"></script>
+<script>
+const theorySlides = [
+{
+  title: "1. Objectifs de ce module",
+  html: `
+    <p>Les modules 1 et 2 ont montre que les ressources et les activites economiques ne sont pas reparties de facon egale sur Terre, et que cela genere d'enormes flux de marchandises. Cette meme inegalite genere aussi des flux... de personnes.</p>
+    <p>Ce module etudie le concept qui permet de comprendre ces deplacements : la <strong>migration</strong>.</p>
+    <div class="callout">
+      <strong>A la fin de ce module, tu seras capable de :</strong>
+      <ul class="clean">
+        <li>definir les notions de migration, d'emigration et d'immigration ;</li>
+        <li>expliquer un flux migratoire par des facteurs de repulsion et d'attraction ;</li>
+        <li>decrire un flux migratoire en precisant son origine, sa destination et son intensite ;</li>
+        <li>situer les grands flux migratoires internationaux et expliquer le cas particulier de la Belgique.</li>
+      </ul>
+    </div>
+  `
+},
+{
+  title: "2. Le concept de migration",
+  html: `
+    <p>Une <strong>migration</strong> est un deplacement durable d'une personne ou d'un groupe de personnes d'un lieu vers un autre. En geographie, on distingue surtout la migration <strong>internationale</strong> (qui franchit une frontiere entre deux pays) de la migration <strong>interne</strong> (a l'interieur d'un meme pays, par exemple de la campagne vers la ville).</p>
+    <table class="data">
+      <tr><th>Terme</th><th>Definition</th></tr>
+      <tr><td><strong>Emigration</strong></td><td>Le fait de quitter son pays d'origine. On parle d'emigres du point de vue du pays de depart.</td></tr>
+      <tr><td><strong>Immigration</strong></td><td>Le fait d'arriver dans un nouveau pays. On parle d'immigres du point de vue du pays d'arrivee.</td></tr>
+      <tr><td><strong>Solde migratoire</strong></td><td>La difference entre le nombre d'immigrations et le nombre d'emigrations pour un territoire donne, sur une periode donnee.</td></tr>
+    </table>
+    <div class="callout piege">
+      <strong>Piege frequent :</strong> « emigration » et « immigration » decrivent le meme deplacement, mais vu depuis deux points de vue differents. Une personne qui part du Maroc pour s'installer en Belgique est a la fois une <em>emigree</em> (du point de vue du Maroc) et une <em>immigree</em> (du point de vue de la Belgique).
+    </div>
+  `
+},
+{
+  title: "3. Pourquoi migre-t-on ? Facteurs de repulsion et d'attraction",
+  html: `
+    <p>La demarche geographique explique un flux migratoire par deux types de facteurs, souvent presents en meme temps.</p>
+    <div class="callout">
+      <strong>Facteur de repulsion (push)</strong> : un element du lieu de depart qui pousse a partir (manque d'emploi, faible acces aux ressources ou aux services, risques naturels ou conflits, faible niveau de developpement).<br><br>
+      <strong>Facteur d'attraction (pull)</strong> : un element du lieu d'arrivee qui attire (emploi disponible, meilleur acces aux ressources et aux services, securite, niveau de developpement plus eleve).
+    </div>
+    <p>Ce raisonnement prolonge directement ce que tu as deja vu : l'inegale repartition des ressources (module 1) et des activites economiques liees aux flux de marchandises (module 2) cree des differences de developpement entre les territoires. Ces differences sont precisement ce qui pousse et attire les migrations.</p>
+    <div class="callout piege">
+      <strong>Piege frequent :</strong> il ne s'agit jamais d'un seul facteur. Une migration s'explique presque toujours par une combinaison de facteurs de repulsion (au depart) et de facteurs d'attraction (a l'arrivee), et par les liens deja existants entre les deux territoires (langue, reseaux familiaux, ancienne colonisation, accords entre Etats...).
+    </div>
+  `
+},
+{
+  title: "4. Les grands flux migratoires internationaux",
+  html: `
+    <p>A l'echelle mondiale, quelques grands corridors migratoires concentrent une part importante des migrations internationales.</p>
+    <div id="theory-map-4"></div>
+    <p class="map-caption">Carte reelle : quelques grands foyers de depart (rouge) et de destination (vert) des migrations internationales actuelles.</p>
+    <table class="data">
+      <tr><th>Corridor</th><th>Type de facteur dominant</th></tr>
+      <tr><td>Mexique et Amerique centrale vers les Etats-Unis</td><td>Attraction economique (emploi, salaires) ; proximite geographique.</td></tr>
+      <tr><td>Afrique du Nord et Afrique subsaharienne vers l'Europe</td><td>Ecart de developpement, parfois conflits ; proximite via la Mediterranee.</td></tr>
+      <tr><td>Asie du Sud (Inde, Pakistan, Bangladesh, Philippines) vers les pays du Golfe</td><td>Attraction economique : forte demande de main-d'oeuvre liee a l'exploitation des hydrocarbures (voir module 1).</td></tr>
+      <tr><td>Europe de l'Est vers l'Europe de l'Ouest</td><td>Libre circulation au sein de l'Union europeenne, ecarts de salaires.</td></tr>
+    </table>
+    <div class="callout">
+      Remarque le lien avec le module 1 : les pays du Golfe, riches en hydrocarbures, attirent une immigration de travail considerable pour exploiter et faire fonctionner cette economie. La geographie des ressources et la geographie des migrations sont etroitement liees.
+    </div>
+  `,
+  postRender: function(helpers){
+    helpers.renderWorldMap(document.getElementById('theory-map-4'), {
+      markers: [
+        {lon:-102, lat:23, color:'#a3283f', r:20, label:'Mexique', dx:-200, dy:0},
+        {lon:-6, lat:32, color:'#a3283f', r:18, label:'Maroc', dx:-180, dy:0},
+        {lon:78, lat:21, color:'#a3283f', r:22, label:'Inde', dx:25, dy:20},
+        {lon:19, lat:52, color:'#a3283f', r:16, label:'Pologne', dx:25, dy:-14},
+        {lon:-98, lat:39, color:'#1f6f5c', r:20, label:'Etats-Unis', dx:25, dy:0},
+        {lon:4.5, lat:50.5, color:'#1f6f5c', r:14, label:'Europe occ.', dx:25, dy:20},
+        {lon:55.3, lat:25.2, color:'#1f6f5c', r:18, label:'Golfe (EAU)', dx:25, dy:-14}
+      ]
+    });
+  }
+},
+{
+  title: "5. Etude de cas : la Belgique, un pays d'immigration",
+  html: `
+    <p>La Belgique illustre bien ces mecanismes. Des la fin du 19e siecle et surtout apres la Seconde Guerre mondiale, le pays a fait appel a une immigration de travail importante pour ses mines et son industrie lourde en Wallonie (notamment en provenance d'Italie, puis du Maroc et de Turquie a partir des annees 1960), avant de se diversifier largement.</p>
+    <div class="callout">
+      <strong>Facteurs d'attraction de la Belgique a cette epoque :</strong> forte demande de main-d'oeuvre dans les mines et l'industrie, accords bilateraux signes par l'Etat belge avec plusieurs pays pour organiser cette immigration.
+    </div>
+    <p>Aujourd'hui, <strong>Bruxelles</strong> est l'une des villes les plus internationales d'Europe : elle accueille de nombreuses institutions europeennes et internationales, ce qui attire une immigration qualifiee en plus des flux plus anciens lies au travail industriel.</p>
+    <div class="callout piege">
+      <strong>Piege frequent :</strong> le solde migratoire d'un pays n'est jamais uniquement lie a un seul type de migration. La Belgique connait a la fois de l'immigration de travail, de l'immigration liee aux institutions internationales, et de l'immigration intra-europeenne (libre circulation au sein de l'UE).
+    </div>
+  `
+},
+{
+  title: "6. Reperes spatiaux a connaitre pour ce module",
+  html: `
+    <p>Pour ce module, il faut pouvoir situer les grands foyers de depart et de destination suivants.</p>
+    <table class="data">
+      <tr><th>Role</th><th>Region a connaitre</th></tr>
+      <tr><td>Foyers de depart</td><td>Mexique et Amerique centrale, Maroc (et Afrique du Nord), Inde (et Asie du Sud), Pologne (et Europe de l'Est)</td></tr>
+      <tr><td>Foyers de destination</td><td>Etats-Unis, Europe occidentale (dont la Belgique), pays du Golfe (Emirats arabes unis, Arabie saoudite)</td></tr>
+    </table>
+    <div class="callout">
+      Ces reperes viennent completer ceux des modules 1 (zones productrices) et 2 (corridors commerciaux et grands ports). Tu commences a disposer d'une vraie carte mentale du monde, construite theme par theme.
+    </div>
+    <p><strong>Tu as termine la theorie de ce module.</strong> Passe maintenant a l'entrainement.</p>
+  `
+}
+];
+
+const flashcardBank = [
+  {front:"Migration", back:"Deplacement durable d'une personne ou d'un groupe de personnes d'un lieu vers un autre."},
+  {front:"Emigration", back:"Le fait de quitter son pays d'origine (point de vue du pays de depart)."},
+  {front:"Immigration", back:"Le fait d'arriver dans un nouveau pays (point de vue du pays d'arrivee)."},
+  {front:"Solde migratoire", back:"Difference entre le nombre d'immigrations et le nombre d'emigrations, sur une periode donnee."},
+  {front:"Facteur de repulsion (push)", back:"Element du lieu de depart qui pousse a partir (manque d'emploi, risques, faible developpement)."},
+  {front:"Facteur d'attraction (pull)", back:"Element du lieu d'arrivee qui attire (emploi, securite, meilleur niveau de developpement)."},
+  {front:"Migration interne", back:"Deplacement a l'interieur d'un meme pays (ex : campagne vers ville)."},
+  {front:"Migration internationale", back:"Deplacement qui franchit une frontiere entre deux pays."},
+  {front:"Pourquoi les pays du Golfe attirent-ils une forte immigration de travail ?", back:"Pour exploiter et faire fonctionner leur economie liee aux hydrocarbures (lien avec le module 1)."},
+  {front:"Pourquoi la Belgique a-t-elle fait appel a l'immigration au 20e siecle ?", back:"Pour repondre a la forte demande de main-d'oeuvre des mines et de l'industrie lourde en Wallonie."},
+  {front:"Pourquoi Bruxelles est-elle une ville tres internationale aujourd'hui ?", back:"Elle accueille de nombreuses institutions europeennes et internationales, qui attirent une immigration qualifiee."}
+];
+
+const gameRounds = [
+  {kind:'world', prompt:"Clique sur le Mexique (grand foyer de depart vers les Etats-Unis).", lon:-102, lat:23, tol:100},
+  {kind:'world', prompt:"Clique sur le Maroc (foyer de depart vers l'Europe).", lon:-6, lat:32, tol:60},
+  {kind:'world', prompt:"Clique sur l'Inde (foyer de depart vers le Golfe et le monde).", lon:78, lat:21, tol:130},
+  {kind:'world', prompt:"Clique sur les Emirats arabes unis (foyer de destination du Golfe).", lon:55.3, lat:25.2, tol:60},
+  {kind:'world', prompt:"Clique sur les Etats-Unis (premier foyer de destination au monde).", lon:-98, lat:39, tol:150},
+  {kind:'world', prompt:"Clique sur la Pologne (foyer de depart vers l'Europe de l'Ouest).", lon:19, lat:52, tol:70},
+  {kind:'belgium', prompt:"Clique sur la Region de Bruxelles-Capitale (ville tres internationale).", region:'Bruxelles'},
+  {kind:'belgium', prompt:"Clique sur la Region wallonne (immigration de travail historique liee aux mines).", region:'Wallonie'}
+];
+
+const exerciseBank = [
+  { type:'mcq', points:1,
+    prompt:"Une personne qui quitte l'Inde pour s'installer aux Emirats arabes unis est, du point de vue de l'Inde :",
+    options:["une immigree","une emigree","une touriste","une refugiee climatique obligatoirement"],
+    correct:1,
+    explain:"Du point de vue du pays de depart (l'Inde), c'est une emigration. Du point de vue des Emirats (pays d'arrivee), ce serait une immigration."
+  },
+  { type:'tf', points:1,
+    prompt:"Un facteur de repulsion (push) est un element du lieu de destination qui attire les migrants.",
+    correct:false,
+    explain:"Faux. Le facteur de repulsion (push) concerne le lieu de depart. Le facteur d'attraction (pull) concerne le lieu de destination."
+  },
+  { type:'match', points:4,
+    prompt:"Associe chaque foyer de depart au facteur d'attraction principal du corridor migratoire correspondant.",
+    items:[
+      {left:"Mexique -> Etats-Unis", options:["Libre circulation dans l'UE, ecarts de salaires","Demande de main-d'oeuvre liee aux hydrocarbures","Attraction economique, proximite geographique","Institutions internationales, emplois qualifies"], correct:"Attraction economique, proximite geographique"},
+      {left:"Inde -> Golfe persique", options:["Libre circulation dans l'UE, ecarts de salaires","Demande de main-d'oeuvre liee aux hydrocarbures","Attraction economique, proximite geographique","Institutions internationales, emplois qualifies"], correct:"Demande de main-d'oeuvre liee aux hydrocarbures"},
+      {left:"Pologne -> Europe de l'Ouest", options:["Libre circulation dans l'UE, ecarts de salaires","Demande de main-d'oeuvre liee aux hydrocarbures","Attraction economique, proximite geographique","Institutions internationales, emplois qualifies"], correct:"Libre circulation dans l'UE, ecarts de salaires"},
+      {left:"Divers pays -> Bruxelles", options:["Libre circulation dans l'UE, ecarts de salaires","Demande de main-d'oeuvre liee aux hydrocarbures","Attraction economique, proximite geographique","Institutions internationales, emplois qualifies"], correct:"Institutions internationales, emplois qualifies"}
+    ],
+    explain:"Chaque corridor migratoire s'explique par une combinaison de facteurs, mais un facteur d'attraction domine souvent l'explication geographique."
+  },
+  { type:'data', points:2,
+    prompt:"Observe ce tableau (ordre de grandeur du nombre de personnes vivant hors de leur pays de naissance).",
+    tableHtml:`<table class="data"><tr><th>Pays de destination</th><th>Immigres (ordre de grandeur)</th></tr>
+      <tr><td>Etats-Unis</td><td>50 millions</td></tr>
+      <tr><td>Allemagne</td><td>16 millions</td></tr>
+      <tr><td>Arabie saoudite</td><td>13 millions</td></tr>
+      <tr><td>Russie</td><td>12 millions</td></tr>
+      <tr><td>Royaume-Uni</td><td>9 millions</td></tr></table>`,
+    subquestions:[
+      {prompt:"Quel est le premier pays de destination des migrations internationales dans ce tableau ?", accepted:["etats-unis","les etats-unis","usa"]},
+      {prompt:"Quel pays de ce tableau est un pays du Golfe, riche en hydrocarbures ?", accepted:["arabie saoudite"]}
+    ],
+    explain:"Les Etats-Unis restent le premier pays de destination au monde. L'Arabie saoudite illustre le lien entre hydrocarbures et immigration de travail."
+  },
+  { type:'classify', points:3,
+    prompt:"Pour chacun des elements suivants, indique s'il s'agit plutot d'un facteur de repulsion (au depart) ou d'attraction (a l'arrivee).",
+    classifyOptions:["Repulsion","Attraction"],
+    items:[
+      {text:"Un manque d'emplois disponibles dans le pays d'origine", correct:"Repulsion"},
+      {text:"Une forte demande de main-d'oeuvre dans les mines et l'industrie", correct:"Attraction"},
+      {text:"La presence d'institutions internationales qui recrutent du personnel qualifie", correct:"Attraction"},
+      {text:"Un acces limite aux ressources ou aux services de base", correct:"Repulsion"},
+      {text:"Des salaires plus eleves dans le pays de destination", correct:"Attraction"}
+    ],
+    explain:"Un meme flux migratoire combine presque toujours au moins un facteur de repulsion et un facteur d'attraction."
+  },
+  { type:'open', points:3,
+    prompt:"Explique, en 4 a 5 phrases, pourquoi les pays du Golfe persique attirent une immigration de travail importante, en faisant le lien avec ce que tu as appris au module 1.",
+    keywordGroups:[["golfe","emirats","arabie"],["hydrocarbures","petrole","gaz"],["attraction","emploi","main-d'oeuvre","main d oeuvre"],["module 1","ressources","atout"]],
+    modelAnswer:"Les pays du Golfe persique, comme l'Arabie saoudite ou les Emirats arabes unis, disposent d'un atout majeur vu au module 1 : d'importantes reserves de petrole et de gaz. L'exploitation de ces ressources et le developpement economique qu'elle finance creent une forte demande de main-d'oeuvre, dans la construction, les services et l'industrie. Cette demande constitue un facteur d'attraction puissant pour des travailleurs venus de pays ou l'emploi est plus rare, notamment d'Asie du Sud (Inde, Pakistan, Bangladesh, Philippines). On voit ainsi que la geographie des ressources energetiques (module 1) explique directement une partie de la geographie des migrations."
+  }
+];
+
+const examBank = [
+  { type:'mcq', points:1,
+    prompt:"Le solde migratoire d'un territoire correspond a :",
+    options:["le nombre total d'habitants du territoire","la difference entre le nombre d'immigrations et le nombre d'emigrations","le nombre de touristes recus chaque annee","le nombre de personnes nees a l'etranger, sans limite de temps"],
+    correct:1
+  },
+  { type:'mcq', points:1,
+    prompt:"Une migration interne est un deplacement :",
+    options:["qui franchit toujours une frontiere internationale","a l'interieur d'un meme pays","uniquement lie au tourisme","impossible a etudier en geographie"],
+    correct:1
+  },
+  { type:'mcq', points:1,
+    prompt:"Un facteur d'attraction (pull) concerne :",
+    options:["le lieu de depart","le lieu de destination","uniquement le climat","uniquement les conflits armes"],
+    correct:1
+  },
+  { type:'mcq', points:1,
+    prompt:"Pourquoi la Belgique a-t-elle fait appel a une immigration de travail importante au 20e siecle ?",
+    options:["Pour peupler des regions vides","Pour repondre a la demande de main-d'oeuvre des mines et de l'industrie lourde","Uniquement pour des raisons diplomatiques","Parce que la loi l'imposait depuis 1830"],
+    correct:1
+  },
+  { type:'mcq', points:1,
+    prompt:"Le corridor migratoire entre l'Asie du Sud et les pays du Golfe s'explique surtout par :",
+    options:["la proximite geographique directe","la demande de main-d'oeuvre liee a l'exploitation des hydrocarbures","le meme climat dans les deux regions","l'absence de frontieres entre les deux regions"],
+    correct:1
+  },
+  { type:'tf', points:1,
+    prompt:"Emigration et immigration decrivent deux deplacements differents.",
+    correct:false
+  },
+  { type:'tf', points:1,
+    prompt:"Une migration internationale s'explique en general par un seul facteur, jamais par une combinaison.",
+    correct:false
+  },
+  { type:'match', points:4,
+    prompt:"Associe chaque foyer de depart au facteur d'attraction principal du corridor migratoire correspondant.",
+    items:[
+      {left:"Mexique -> Etats-Unis", options:["Libre circulation dans l'UE, ecarts de salaires","Demande de main-d'oeuvre liee aux hydrocarbures","Attraction economique, proximite geographique","Institutions internationales, emplois qualifies"], correct:"Attraction economique, proximite geographique"},
+      {left:"Inde -> Golfe persique", options:["Libre circulation dans l'UE, ecarts de salaires","Demande de main-d'oeuvre liee aux hydrocarbures","Attraction economique, proximite geographique","Institutions internationales, emplois qualifies"], correct:"Demande de main-d'oeuvre liee aux hydrocarbures"},
+      {left:"Pologne -> Europe de l'Ouest", options:["Libre circulation dans l'UE, ecarts de salaires","Demande de main-d'oeuvre liee aux hydrocarbures","Attraction economique, proximite geographique","Institutions internationales, emplois qualifies"], correct:"Libre circulation dans l'UE, ecarts de salaires"},
+      {left:"Divers pays -> Bruxelles", options:["Libre circulation dans l'UE, ecarts de salaires","Demande de main-d'oeuvre liee aux hydrocarbures","Attraction economique, proximite geographique","Institutions internationales, emplois qualifies"], correct:"Institutions internationales, emplois qualifies"}
+    ]
+  },
+  { type:'data', points:2,
+    prompt:"A partir du tableau ci-dessous :",
+    tableHtml:`<table class="data"><tr><th>Pays de destination</th><th>Immigres (ordre de grandeur)</th></tr>
+      <tr><td>Etats-Unis</td><td>50 millions</td></tr>
+      <tr><td>Allemagne</td><td>16 millions</td></tr>
+      <tr><td>Arabie saoudite</td><td>13 millions</td></tr>
+      <tr><td>Russie</td><td>12 millions</td></tr>
+      <tr><td>Royaume-Uni</td><td>9 millions</td></tr></table>`,
+    subquestions:[
+      {prompt:"Quel pays europeen de ce tableau accueille le plus d'immigres ?", accepted:["allemagne"]},
+      {prompt:"Cite un pays de ce tableau dont l'immigration est fortement liee aux hydrocarbures.", accepted:["arabie saoudite"]}
+    ]
+  },
+  { type:'classify', points:3,
+    prompt:"Pour chacun des elements suivants, indique s'il s'agit plutot d'un facteur de repulsion (au depart) ou d'attraction (a l'arrivee).",
+    classifyOptions:["Repulsion","Attraction"],
+    items:[
+      {text:"Un manque d'emplois disponibles dans le pays d'origine", correct:"Repulsion"},
+      {text:"Une forte demande de main-d'oeuvre dans les mines et l'industrie", correct:"Attraction"},
+      {text:"La presence d'institutions internationales qui recrutent du personnel qualifie", correct:"Attraction"},
+      {text:"Un acces limite aux ressources ou aux services de base", correct:"Repulsion"},
+      {text:"Des salaires plus eleves dans le pays de destination", correct:"Attraction"}
+    ]
+  },
+  { type:'open', points:3,
+    prompt:"Explique, en 4 a 5 phrases, comment le cas de la Belgique illustre a la fois des facteurs de repulsion (dans les pays de depart) et des facteurs d'attraction (en Belgique).",
+    keywordGroups:[["repulsion"],["attraction"],["mines","industrie","bruxelles","institutions"],["belgique"]],
+    modelAnswer:"Le cas de la Belgique montre bien la combinaison de facteurs a l'oeuvre dans toute migration. Au 20e siecle, des pays comme l'Italie, le Maroc ou la Turquie connaissaient un manque d'emplois : c'etait un facteur de repulsion. En meme temps, la Belgique offrait un facteur d'attraction fort, avec une demande importante de main-d'oeuvre dans les mines et l'industrie lourde de Wallonie. Aujourd'hui, Bruxelles attire une immigration differente, plus qualifiee, grace a la presence d'institutions europeennes et internationales qui recrutent du personnel venu de toute l'Europe et du monde. La Belgique illustre ainsi que les facteurs d'attraction d'un meme pays peuvent evoluer et se diversifier avec le temps."
+  }
+];
+
+GeoEngine.initModule({
+  id: 'm3-migrations',
+  eyebrow: "Geographie &middot; 5e annee &middot; Module 3/4 &middot; Reseau libre confessionnel (FESeC)",
+  title: "Les flux de population et les migrations",
+  subtitle: "Troisieme module du programme de 5e annee. 60% requis pour debloquer le module suivant.",
+  introHtml: `
+    <p>Ce module poursuit le theme de 5e annee en abordant le concept de <strong>migration</strong> : pourquoi les personnes se deplacent, comment decrire un flux migratoire, et comment la Belgique illustre concretement ces mecanismes, de l'immigration de travail du 20e siecle a la Bruxelles internationale d'aujourd'hui.</p>
+    <div class="callout warn">
+      <strong>Precision honnete :</strong> comme pour les modules precedents, il n'existe pas de banque officielle d'examens de geographie en FWB. Les questions sont construites a partir des types de taches du programme FESeC. Les chiffres de migration donnes sont des ordres de grandeur, pas des statistiques exactes et datees.
+    </div>
+  `,
+  examTitle: "les flux de population et les migrations",
+  passThreshold: 60,
+  theorySlides, flashcardBank, gameRounds, exerciseBank, examBank,
+  hubHref: 'index.html',
+  nextHref: 'module-4.html',
+  nextTitle: 'Amenagements, risques et developpement durable',
+  footerHtml: 'Module 3/4 (5e) &middot; programme officiel FESeC 2018 (D/2018/7362/3/15) &middot; ressource privee pour etude a domicile.<br>Fonds de carte : "BlankMap-World-Equirectangular", John Harvey, domaine public (CC0), Wikimedia Commons &middot; "Regions of Belgium", Ssolbergj, CC BY 3.0, Wikimedia Commons.'
+});
+</script>
+</body>
+</html>
