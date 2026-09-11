@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geographie 6e - Module 6 : Justifier un amenagement</title>
+<link rel="stylesheet" href="shared/engine.css">
+</head>
+<body>
+<div id="app-root"></div>
+<script>window.GEO_ASSET_BASE = 'assets/maps/';</script>
+<script src="shared/engine.js"></script>
+<script>
+const theorySlides = [
+{
+  title: "1. Objectifs de ce module",
+  html: `
+    <p>Le module 5 t'a donne le vocabulaire de l'aire urbaine et des modeles spatiaux. Ce module va plus loin : il te demande de <strong>justifier</strong> un amenagement du territoire, c'est-a-dire d'expliquer pourquoi il est pertinent (ou pas) a un endroit donne, en mobilisant quatre concepts deja connus depuis la 5e.</p>
+    <div class="callout">
+      <strong>A la fin de ce module, tu seras capable de :</strong>
+      <ul class="clean">
+        <li>utiliser ensemble les quatre concepts : atouts, contraintes, potentialites, vulnerabilites ;</li>
+        <li>justifier un amenagement a partir d'un cas belge concret (le port d'Anvers) ;</li>
+        <li>juger la pertinence d'un amenagement destine a ameliorer l'acces a une fonction (les soins de sante en zone rurale) ;</li>
+        <li>suivre une demarche structuree pour justifier n'importe quel amenagement.</li>
+      </ul>
+    </div>
+  `
+},
+{
+  title: "2. Quatre concepts pour justifier un amenagement",
+  html: `
+    <p>Tu as deja rencontre ces quatre concepts depuis la 5e. Ce module te demande de les mobiliser <strong>ensemble</strong> pour juger un amenagement.</p>
+    <table class="data">
+      <tr><th>Concept</th><th>Question a laquelle il repond</th></tr>
+      <tr><td><strong>Atout</strong></td><td>Quel element du site favorise cet amenagement ?</td></tr>
+      <tr><td><strong>Contrainte</strong></td><td>Quel element du site complique cet amenagement ?</td></tr>
+      <tr><td><strong>Potentialite</strong></td><td>Quel benefice cet amenagement peut-il apporter au territoire et a sa population ?</td></tr>
+      <tr><td><strong>Vulnerabilite</strong></td><td>Quel risque ou quelle fragilite cet amenagement peut-il aggraver ?</td></tr>
+    </table>
+    <div class="callout piege">
+      <strong>Piege frequent :</strong> atout/contrainte concernent le <em>site</em> (est-il facile ou difficile d'y construire l'amenagement ?), tandis que potentialite/vulnerabilite concernent les <em>consequences</em> de l'amenagement une fois construit (qu'est-ce que cela change pour le territoire et sa population ?).
+    </div>
+  `
+},
+{
+  title: "3. Etude de cas : l'extension du port d'Anvers",
+  html: `
+    <p>Tu as vu au module 2 que le port d'Anvers-Bruges est le deuxieme port europeen a conteneurs. Face a la croissance du commerce mondial, des projets reguliers visent a etendre ses capacites (nouveaux quais, approfondissement des chenaux).</p>
+    <div id="theory-map-3"></div>
+    <table class="data">
+      <tr><th></th><th>Elements a mobiliser</th></tr>
+      <tr><td><strong>Atouts du site</strong></td><td>Acces direct a la mer du Nord via l'estuaire de l'Escaut, reseau logistique deja en place (rail, route, voies navigables).</td></tr>
+      <tr><td><strong>Contraintes du site</strong></td><td>Espace disponible limite pres d'une grande ville, proximite de zones habitees et de zones naturelles protegees.</td></tr>
+      <tr><td><strong>Potentialites</strong></td><td>Emplois supplementaires, renforcement de la position commerciale de la Belgique dans la mondialisation (module 2).</td></tr>
+      <tr><td><strong>Vulnerabilites</strong></td><td>Pression accrue sur l'estuaire (ecosystemes), augmentation du trafic routier et de la pollution associee.</td></tr>
+    </table>
+    <div class="callout">
+      Justifier cet amenagement suppose de mettre en balance ces quatre elements, et non de n'en retenir qu'un seul.
+    </div>
+  `,
+  postRender: function(helpers){
+    helpers.renderWorldMap(document.getElementById('theory-map-3'), {
+      crop: { lonMin: -4, lonMax: 10, latMin: 48, latMax: 54 },
+      markers: [ {lon:4.4, lat:51.2, color:'#1f6f5c', r:16, label:'Anvers', dx:22, dy:0} ]
+    });
+  }
+},
+{
+  title: "4. Etude de cas : l'acces aux soins de sante en zone rurale",
+  html: `
+    <p>Autre situation frequente : une fonction (ici, la sante) est moins facilement accessible dans certaines zones peu denses, comme les regions rurales de l'Ardenne. Faut-il y implanter un nouvel amenagement (antenne medicale, service mobile) ?</p>
+    <table class="data">
+      <tr><th></th><th>Elements a mobiliser</th></tr>
+      <tr><td><strong>Atouts du site</strong></td><td>Espace disponible, cout du foncier plus faible qu'en ville.</td></tr>
+      <tr><td><strong>Contraintes du site</strong></td><td>Faible densite de population, distances-temps plus longues, reseaux de communication moins denses.</td></tr>
+      <tr><td><strong>Potentialites</strong></td><td>Meilleur acces aux soins pour une population parfois vieillissante et isolee, reduction des distance-temps vers un service essentiel.</td></tr>
+      <tr><td><strong>Vulnerabilites</strong></td><td>Risque de frequentation insuffisante pour rentabiliser l'amenagement, dependance a un seul acteur (medecin, hopital de reference).</td></tr>
+    </table>
+    <div class="callout piege">
+      <strong>Piege frequent :</strong> une zone peu peuplee n'est pas forcement « sans besoin ». Le manque d'acces a une fonction peut au contraire y etre un enjeu tres important, meme si le nombre absolu de personnes concernees est plus faible qu'en ville.
+    </div>
+  `
+},
+{
+  title: "5. La demarche pour justifier un amenagement",
+  html: `
+    <p>Face a n'importe quel amenagement a justifier, suis cette demarche en quatre etapes.</p>
+    <ol class="clean">
+      <li><strong>Identifier le besoin</strong> : quelle fonction est mal desservie, ou quel enjeu (ressource, risque, flux) justifie l'amenagement ?</li>
+      <li><strong>Analyser le site</strong> : quels sont ses atouts et ses contraintes pour accueillir cet amenagement ?</li>
+      <li><strong>Anticiper les consequences</strong> : quelles potentialites et quelles vulnerabilites cet amenagement va-t-il creer pour le territoire ?</li>
+      <li><strong>Conclure de maniere nuancee</strong> : l'amenagement se justifie-t-il, sous quelles conditions, avec quelles limites ?</li>
+    </ol>
+    <div class="callout">
+      <strong>Exemple de phrase bien construite :</strong> « L'extension du port d'Anvers s'appuie sur un atout majeur, l'acces direct a la mer du Nord, mais se heurte a la contrainte de l'espace disponible pres d'une grande ville ; elle presente la potentialite de renforcer l'emploi et le role commercial de la Belgique, tout en presentant une vulnerabilite pour les ecosystemes de l'estuaire. »
+    </div>
+  `
+},
+{
+  title: "6. Reperes spatiaux a connaitre pour ce module",
+  html: `
+    <table class="data">
+      <tr><th>Lieu</th><th>Ce qu'il faut retenir</th></tr>
+      <tr><td>Port d'Anvers-Bruges</td><td>Extension portuaire : atouts/contraintes de site, potentialites/vulnerabilites du projet.</td></tr>
+      <tr><td>Ardenne (Wallonie)</td><td>Region rurale peu dense, exemple d'enjeu d'acces aux services (sante).</td></tr>
+    </table>
+    <div class="callout">
+      Ces deux cas belges completent ta connaissance du territoire national, deja abordee via le port d'Anvers (module 2) et les aires urbaines wallonnes (module 5).
+    </div>
+    <p><strong>Tu as termine la theorie de ce module.</strong> Passe maintenant a l'entrainement.</p>
+  `
+}
+];
+
+const flashcardBank = [
+  {front:"Atout (rappel)", back:"Element du site qui favorise un amenagement."},
+  {front:"Contrainte (rappel)", back:"Element du site qui complique un amenagement."},
+  {front:"Potentialite", back:"Benefice qu'un amenagement peut apporter au territoire et a sa population."},
+  {front:"Vulnerabilite", back:"Risque ou fragilite qu'un amenagement peut aggraver."},
+  {front:"Atout du port d'Anvers", back:"Acces direct a la mer du Nord via l'estuaire de l'Escaut."},
+  {front:"Contrainte du port d'Anvers", back:"Espace disponible limite, proximite de zones habitees et protegees."},
+  {front:"Vulnerabilite de l'extension du port d'Anvers", back:"Pression accrue sur les ecosystemes de l'estuaire et augmentation du trafic."},
+  {front:"Les 4 etapes pour justifier un amenagement", back:"Identifier le besoin, analyser le site (atouts/contraintes), anticiper les consequences (potentialites/vulnerabilites), conclure de maniere nuancee."},
+  {front:"Pourquoi l'acces aux soins est un enjeu en zone rurale peu dense", back:"Les distances-temps sont plus longues et les reseaux de communication moins denses, meme si la population absolue est plus faible."}
+];
+
+const gameRounds = [
+  {kind:'world', prompt:"Zoom Belgique/Pays-Bas : clique sur Anvers.", lon:4.4, lat:51.2, tol:18,
+    crop:{ lonMin:-4, lonMax:10, latMin:48, latMax:54 }},
+  {kind:'belgium', prompt:"Clique sur la Region wallonne (ou se trouve l'Ardenne).", region:'Wallonie'},
+  {kind:'belgium', prompt:"Clique sur la Region flamande (ou se trouve le port d'Anvers).", region:'Flandre'},
+  {kind:'world', prompt:"Rappel module 2 : clique sur Rotterdam, tout pres d'Anvers.", lon:4.5, lat:51.9, tol:16,
+    crop:{ lonMin:-4, lonMax:10, latMin:48, latMax:54 }}
+];
+
+const exerciseBank = [
+  { type:'mcq', points:1,
+    prompt:"Un atout, dans la demarche de justification d'un amenagement, concerne :",
+    options:["les consequences futures de l'amenagement","un element du site qui favorise l'amenagement","uniquement le cout financier","le nombre d'habitants concernes"],
+    correct:1,
+    explain:"Atout et contrainte concernent le site (avant construction) ; potentialite et vulnerabilite concernent les consequences (apres construction)."
+  },
+  { type:'tf', points:1,
+    prompt:"Une vulnerabilite est un benefice que l'amenagement apporte au territoire.",
+    correct:false,
+    explain:"Faux, c'est l'inverse : la potentialite est un benefice, la vulnerabilite est un risque ou une fragilite aggravee."
+  },
+  { type:'match', points:4,
+    prompt:"Associe chaque element au concept correspondant, dans le cas de l'extension du port d'Anvers.",
+    items:[
+      {left:"Acces direct a la mer du Nord", options:["Atout","Contrainte","Potentialite","Vulnerabilite"], correct:"Atout"},
+      {left:"Espace disponible limite pres de la ville", options:["Atout","Contrainte","Potentialite","Vulnerabilite"], correct:"Contrainte"},
+      {left:"Renforcement de l'emploi et du role commercial", options:["Atout","Contrainte","Potentialite","Vulnerabilite"], correct:"Potentialite"},
+      {left:"Pression accrue sur les ecosystemes de l'estuaire", options:["Atout","Contrainte","Potentialite","Vulnerabilite"], correct:"Vulnerabilite"}
+    ],
+    explain:"Ce classement reprend exactement le tableau de la theorie (section 3)."
+  },
+  { type:'classify', points:3,
+    prompt:"Pour chaque element concernant l'acces aux soins en zone rurale, indique s'il s'agit d'un atout/potentialite ou d'une contrainte/vulnerabilite.",
+    classifyOptions:["Atout/Potentialite","Contrainte/Vulnerabilite"],
+    items:[
+      {text:"Espace disponible et cout du foncier plus faible", correct:"Atout/Potentialite"},
+      {text:"Distances-temps plus longues vers les services", correct:"Contrainte/Vulnerabilite"},
+      {text:"Meilleur acces aux soins pour une population isolee", correct:"Atout/Potentialite"},
+      {text:"Risque de frequentation insuffisante pour rentabiliser l'amenagement", correct:"Contrainte/Vulnerabilite"}
+    ],
+    explain:"La encore, un meme amenagement cumule des elements positifs et des risques : c'est le coeur de la demarche de justification."
+  },
+  { type:'data', points:2,
+    prompt:"D'apres la demarche en quatre etapes vue dans la theorie (section 5) :",
+    tableHtml:`<table class="data"><tr><th>Etape</th><th>Question</th></tr>
+      <tr><td>1</td><td>Identifier le besoin</td></tr>
+      <tr><td>2</td><td>Analyser le site</td></tr>
+      <tr><td>3</td><td>Anticiper les consequences</td></tr>
+      <tr><td>4</td><td>Conclure de maniere nuancee</td></tr></table>`,
+    subquestions:[
+      {prompt:"A quelle etape analyse-t-on les atouts et les contraintes du site ?", accepted:["2","etape 2","deux"]},
+      {prompt:"A quelle etape anticipe-t-on les potentialites et les vulnerabilites ?", accepted:["3","etape 3","trois"]}
+    ],
+    explain:"Site (atouts/contraintes) vient avant consequences (potentialites/vulnerabilites) dans la demarche."
+  },
+  { type:'open', points:3,
+    prompt:"Choisis le cas du port d'Anvers ou celui de l'acces aux soins en zone rurale, et justifie l'amenagement en 4 a 5 phrases en utilisant les quatre concepts (atout, contrainte, potentialite, vulnerabilite).",
+    keywordGroups:[["atout"],["contrainte"],["potentialite"],["vulnerabilite"]],
+    modelAnswer:"L'extension du port d'Anvers s'appuie sur un atout de site important : l'acces direct a la mer du Nord via l'estuaire de l'Escaut. Elle se heurte cependant a une contrainte reelle, le manque d'espace disponible pres d'une grande ville densement peuplee. Si elle se realise, cette extension presente une potentialite forte pour l'economie belge, avec des emplois supplementaires et un role commercial renforce dans la mondialisation. Elle comporte toutefois une vulnerabilite non negligeable pour les ecosystemes fragiles de l'estuaire, qui subiraient une pression accrue. Justifier cet amenagement suppose donc de mettre en balance ces quatre elements plutot que de n'en retenir qu'un seul."
+  }
+];
+
+const examBank = [
+  { type:'mcq', points:1,
+    prompt:"Une potentialite, dans la demarche de justification d'un amenagement, concerne :",
+    options:["un element du site avant construction","un benefice possible de l'amenagement pour le territoire","uniquement le cout de construction","le nom de l'entreprise qui construit"],
+    correct:1
+  },
+  { type:'mcq', points:1,
+    prompt:"Le port d'Anvers-Bruges tire un atout de site majeur de :",
+    options:["son climat tres chaud","son acces direct a la mer du Nord via l'estuaire de l'Escaut","l'absence totale de contraintes","sa tres faible frequentation"],
+    correct:1
+  },
+  { type:'mcq', points:1,
+    prompt:"La premiere etape de la demarche pour justifier un amenagement consiste a :",
+    options:["conclure immediatement","identifier le besoin","construire l'amenagement","ignorer le site"],
+    correct:1
+  },
+  { type:'mcq', points:1,
+    prompt:"En zone rurale peu dense, le principal defi d'acces aux services de sante est lie a :",
+    options:["l'absence totale de besoin","des distances-temps plus longues et des reseaux moins denses","un exces de medecins disponibles","l'interdiction legale d'y construire des hopitaux"],
+    correct:1
+  },
+  { type:'mcq', points:1,
+    prompt:"Atout et contrainte, contrairement a potentialite et vulnerabilite, concernent surtout :",
+    options:["les consequences futures de l'amenagement","le site, avant la construction de l'amenagement","le prix de vente du terrain uniquement","la meteo du jour de l'inauguration"],
+    correct:1
+  },
+  { type:'tf', points:1,
+    prompt:"Justifier un amenagement consiste a ne retenir qu'un seul element favorable, en ignorant les contraintes.",
+    correct:false
+  },
+  { type:'tf', points:1,
+    prompt:"Une zone rurale peu peuplee ne presente jamais de besoin reel en matiere d'acces aux services.",
+    correct:false
+  },
+  { type:'match', points:4,
+    prompt:"Associe chaque element au concept correspondant, dans le cas de l'extension du port d'Anvers.",
+    items:[
+      {left:"Acces direct a la mer du Nord", options:["Atout","Contrainte","Potentialite","Vulnerabilite"], correct:"Atout"},
+      {left:"Espace disponible limite pres de la ville", options:["Atout","Contrainte","Potentialite","Vulnerabilite"], correct:"Contrainte"},
+      {left:"Renforcement de l'emploi et du role commercial", options:["Atout","Contrainte","Potentialite","Vulnerabilite"], correct:"Potentialite"},
+      {left:"Pression accrue sur les ecosystemes de l'estuaire", options:["Atout","Contrainte","Potentialite","Vulnerabilite"], correct:"Vulnerabilite"}
+    ]
+  },
+  { type:'data', points:2,
+    prompt:"D'apres la demarche en quatre etapes vue dans la theorie (section 5) :",
+    tableHtml:`<table class="data"><tr><th>Etape</th><th>Question</th></tr>
+      <tr><td>1</td><td>Identifier le besoin</td></tr>
+      <tr><td>2</td><td>Analyser le site</td></tr>
+      <tr><td>3</td><td>Anticiper les consequences</td></tr>
+      <tr><td>4</td><td>Conclure de maniere nuancee</td></tr></table>`,
+    subquestions:[
+      {prompt:"Quelle est la toute derniere etape de la demarche ?", accepted:["conclure de maniere nuancee","conclure","etape 4","quatre"]},
+      {prompt:"Quelle est la toute premiere etape de la demarche ?", accepted:["identifier le besoin","identifier","etape 1","une"]}
+    ]
+  },
+  { type:'classify', points:3,
+    prompt:"Pour chaque element concernant l'acces aux soins en zone rurale, indique s'il s'agit d'un atout/potentialite ou d'une contrainte/vulnerabilite.",
+    classifyOptions:["Atout/Potentialite","Contrainte/Vulnerabilite"],
+    items:[
+      {text:"Espace disponible et cout du foncier plus faible", correct:"Atout/Potentialite"},
+      {text:"Distances-temps plus longues vers les services", correct:"Contrainte/Vulnerabilite"},
+      {text:"Meilleur acces aux soins pour une population isolee", correct:"Atout/Potentialite"},
+      {text:"Risque de frequentation insuffisante pour rentabiliser l'amenagement", correct:"Contrainte/Vulnerabilite"}
+    ]
+  },
+  { type:'open', points:3,
+    prompt:"Explique, en 4 a 5 phrases, pourquoi la demarche de justification d'un amenagement doit toujours mobiliser les quatre concepts (atout, contrainte, potentialite, vulnerabilite) plutot qu'un seul.",
+    keywordGroups:[["atout"],["contrainte"],["potentialite"],["vulnerabilite","nuance","equilibre","balance"]],
+    modelAnswer:"Justifier un amenagement uniquement par ses atouts ou uniquement par ses contraintes donnerait une vision incomplete et biaisee de la situation. Le concept d'atout met en evidence ce qui rend le site favorable, tandis que la contrainte signale ce qui le complique : les deux sont necessaires pour comprendre le choix du site. De la meme maniere, la potentialite montre les benefices attendus de l'amenagement, tandis que la vulnerabilite signale les risques qu'il peut aggraver. En croisant ces quatre concepts, on obtient une analyse nuancee qui permet de juger si un amenagement se justifie, et sous quelles conditions, plutot qu'une conclusion simpliste et unilaterale."
+  }
+];
+
+GeoEngine.initModule({
+  id: 'm6-justifier-amenagement',
+  eyebrow: "Geographie &middot; 6e annee &middot; Module 6/8 &middot; Reseau libre confessionnel (FESeC)",
+  title: "Justifier un amenagement du territoire",
+  subtitle: "Deuxieme module du programme de 6e annee. 60% requis pour debloquer le module suivant.",
+  introHtml: `
+    <p>Ce module te demande de mobiliser ensemble quatre concepts vus depuis la 5e (atout, contrainte, potentialite, vulnerabilite) pour justifier un amenagement du territoire, a partir de deux cas belges concrets : l'extension du port d'Anvers et l'acces aux soins de sante en zone rurale.</p>
+    <div class="callout warn">
+      <strong>Precision honnete :</strong> comme pour les modules precedents, il n'existe pas de banque officielle d'examens de geographie en FWB. Les questions sont construites a partir des types de taches du programme FESeC.
+    </div>
+  `,
+  examTitle: "justifier un amenagement du territoire",
+  passThreshold: 60,
+  theorySlides, flashcardBank, gameRounds, exerciseBank, examBank,
+  hubHref: 'index.html',
+  nextHref: 'module-7.html',
+  nextTitle: "Conflits d'usage et developpement durable",
+  footerHtml: 'Module 6/8 (6e) &middot; programme officiel FESeC 2018 (D/2018/7362/3/15) &middot; ressource privee pour etude a domicile.<br>Fonds de carte : "BlankMap-World-Equirectangular", John Harvey, domaine public (CC0), Wikimedia Commons &middot; "Regions of Belgium", Ssolbergj, CC BY 3.0, Wikimedia Commons.'
+});
+</script>
+</body>
+</html>

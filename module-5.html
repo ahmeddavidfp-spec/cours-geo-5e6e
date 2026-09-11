@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geographie 6e - Module 5 : La ville et ses fonctions</title>
+<link rel="stylesheet" href="shared/engine.css">
+</head>
+<body>
+<div id="app-root"></div>
+<script>window.GEO_ASSET_BASE = 'assets/maps/';</script>
+<script src="shared/engine.js"></script>
+<script>
+const theorySlides = [
+{
+  title: "1. Objectifs de ce module et de la 6e annee",
+  html: `
+    <p>Bienvenue en 6e annee. Le programme change de theme : apres avoir etudie l'inegale repartition des ressources et des populations (5e), tu vas maintenant remobiliser tous ces acquis pour etudier <strong>l'amenagement du territoire</strong>, cette fois surtout a l'echelle belge et europeenne.</p>
+    <div class="callout">
+      <strong>A la fin de ce module, tu seras capable de :</strong>
+      <ul class="clean">
+        <li>identifier les principales fonctions d'un territoire et des facteurs de localisation ;</li>
+        <li>utiliser le vocabulaire de l'aire urbaine (etalement urbain, migration pendulaire, zone d'influence, bassin d'emploi) ;</li>
+        <li>comparer un cas reel a un modele spatial de la ville (centre/peripherie, mono/polycentrisme) ;</li>
+        <li>situer les principales aires urbaines belges et europeennes.</li>
+      </ul>
+    </div>
+    <p><strong>Pourquoi la ville ?</strong> C'est dans les villes que se concentrent la plupart des fonctions d'un territoire (emploi, commerce, sante, education...). Comprendre comment une ville s'organise dans l'espace est la premiere etape pour comprendre les choix d'amenagement du territoire.</p>
+  `
+},
+{
+  title: "2. Les fonctions d'un territoire",
+  html: `
+    <p>Un territoire remplit plusieurs <strong>fonctions</strong> pour la population qui y vit : se loger, travailler, se soigner, apprendre, se deplacer, consommer, se divertir... Chaque fonction se localise selon certains <strong>facteurs de localisation</strong>.</p>
+    <table class="data">
+      <tr><th>Fonction</th><th>Exemples de facteurs de localisation</th></tr>
+      <tr><td>Logement</td><td>Prix du terrain, proximite de l'emploi, qualite du cadre de vie.</td></tr>
+      <tr><td>Emploi / commerce</td><td>Accessibilite (routes, rail), proximite de la clientele ou de la main-d'oeuvre.</td></tr>
+      <tr><td>Sante, education</td><td>Accessibilite pour la population, seuil de population minimum a desservir.</td></tr>
+      <tr><td>Transport</td><td>Connexion entre les autres fonctions, noeuds de reseaux (gares, autoroutes, ports).</td></tr>
+    </table>
+    <div class="callout piege">
+      <strong>Piege frequent :</strong> une fonction ne se localise jamais au hasard. Meme quand la logique n'est pas immediatement visible, il existe toujours un ou plusieurs facteurs de localisation qui expliquent un choix d'implantation.
+    </div>
+  `
+},
+{
+  title: "3. Le vocabulaire de l'aire urbaine",
+  html: `
+    <p>Pour decrire l'organisation d'une ville et de ses environs, le programme utilise un vocabulaire precis.</p>
+    <table class="data">
+      <tr><th>Terme</th><th>Definition</th></tr>
+      <tr><td><strong>Aire urbaine</strong></td><td>Une ville-centre et les communes environnantes fortement liees a elle par les deplacements domicile-travail.</td></tr>
+      <tr><td><strong>Etalement urbain</strong></td><td>L'extension progressive de la zone urbanisee au-dela des limites de la ville-centre.</td></tr>
+      <tr><td><strong>Migration pendulaire</strong></td><td>Le deplacement quotidien, aller-retour, entre le lieu de residence et le lieu de travail (ou d'etudes).</td></tr>
+      <tr><td><strong>Zone d'influence</strong></td><td>L'espace sur lequel une ville exerce une attraction (pour l'emploi, les commerces, les services).</td></tr>
+      <tr><td><strong>Bassin d'emploi</strong></td><td>Le territoire dans lequel la majorite des habitants trouvent un emploi sans devoir le quitter.</td></tr>
+    </table>
+    <div class="callout">
+      Ces notions permettent de decrire des phenomenes tres concrets : une personne qui habite en peripherie d'une aire urbaine et qui fait chaque jour la navette vers le centre-ville pour travailler illustre a la fois l'etalement urbain et la migration pendulaire.
+    </div>
+  `
+},
+{
+  title: "4. Les modeles spatiaux de la ville",
+  html: `
+    <p>Pour analyser l'organisation d'une ville, on la compare a des <strong>modeles spatiaux</strong>. Attention : contrairement aux modeles vus en 5e (tectonique des plaques, circulation atmospherique...), les modeles de la ville ne sont <strong>pas a connaitre par coeur</strong>. Le programme te demande de savoir <strong>comparer un cas reel a un modele qu'on te communique</strong>.</p>
+    <table class="data">
+      <tr><th>Modele</th><th>Principe</th></tr>
+      <tr><td><strong>Centre/peripherie</strong></td><td>Un centre concentre les fonctions les plus rares (pouvoir, grands commerces) ; la peripherie est plus residentielle.</td></tr>
+      <tr><td><strong>Monocentrisme</strong></td><td>La ville s'organise autour d'un seul centre dominant.</td></tr>
+      <tr><td><strong>Polycentrisme</strong></td><td>Plusieurs centres se partagent les fonctions au sein d'une meme aire urbaine.</td></tr>
+      <tr><td><strong>Monofonctionnel / polyfonctionnel</strong></td><td>Un espace accueille une seule fonction dominante (ex : zoning industriel) ou plusieurs fonctions melangees (ex : centre-ville).</td></tr>
+    </table>
+    <div class="callout piege">
+      <strong>Piege frequent :</strong> il n'y a pas de « bon » ou de « mauvais » modele. La tache consiste a observer un cas concret (une carte, une description) et a determiner a quel(s) modele(s) il correspond le mieux, en justifiant avec des observations precises.
+    </div>
+  `
+},
+{
+  title: "5. Etude de cas : les aires urbaines belges",
+  html: `
+    <p>La Belgique compte sept aires urbaines principales. Elles ne sont pas reparties au hasard : elles suivent en grande partie un axe historique et industriel, le <strong>Sillon Sambre-Meuse</strong>, ainsi que l'axe portuaire du Nord.</p>
+    <div class="belgium-map-wrap" id="theory-map-5"></div>
+    <p class="map-caption">Carte reelle des regions belges, avec les sept principales aires urbaines a situer.</p>
+    <table class="data">
+      <tr><th>Aire urbaine</th><th>Repere</th></tr>
+      <tr><td>Anvers, Bruges, Gand</td><td>Region flamande, proches du littoral ou de l'estuaire de l'Escaut.</td></tr>
+      <tr><td>Bruxelles</td><td>Region de Bruxelles-Capitale, enclavee entre les deux autres regions.</td></tr>
+      <tr><td>Charleroi, Namur, Liege</td><td>Region wallonne, le long du Sillon Sambre-Meuse (ancien axe industriel).</td></tr>
+    </table>
+    <div class="callout">
+      Bruxelles fonctionne surtout selon un modele <strong>monocentrique</strong> a l'echelle de son aire urbaine (un centre historique tres dominant), tandis que le Sillon Sambre-Meuse illustre plutot une organisation <strong>polycentrique</strong> a l'echelle wallonne, avec plusieurs villes de taille comparable (Charleroi, Namur, Liege) reliees entre elles.
+    </div>
+  `,
+  postRender: function(helpers){
+    helpers.loadBelgiumSvgMarkup().then(markup=>{
+      document.getElementById('theory-map-5').innerHTML = markup;
+    });
+  }
+},
+{
+  title: "6. Reperes spatiaux a connaitre pour ce module",
+  html: `
+    <table class="data">
+      <tr><th>Categorie</th><th>A connaitre</th></tr>
+      <tr><td>Les 7 aires urbaines belges</td><td>Anvers, Bruges, Bruxelles, Charleroi, Gand, Liege, Namur</td></tr>
+      <tr><td>Axe industriel wallon</td><td>Le Sillon Sambre-Meuse (Charleroi - Namur - Liege)</td></tr>
+      <tr><td>Grandes aires urbaines europeennes (exemples)</td><td>Paris, Londres, Berlin, Madrid</td></tr>
+    </table>
+    <div id="theory-map-6"></div>
+    <p class="map-caption">Zoom reel sur l'Europe de l'Ouest.</p>
+    <div class="callout">
+      Ces reperes belges viennent completer ceux deja installes en 5e (Anvers pour le port, module 2). Tu vois que les memes villes reviennent regulierement : elles cumulent souvent plusieurs fonctions et plusieurs atouts.
+    </div>
+    <p><strong>Tu as termine la theorie de ce module.</strong> Passe maintenant a l'entrainement.</p>
+  `,
+  postRender: function(helpers){
+    helpers.renderWorldMap(document.getElementById('theory-map-6'), {
+      crop: { lonMin: -10, lonMax: 20, latMin: 40, latMax: 58 },
+      markers: [
+        {lon:2.35, lat:48.85, color:'#1f6f5c', r:18, label:'Paris', dx:22, dy:0},
+        {lon:-0.13, lat:51.5, color:'#1f6f5c', r:18, label:'Londres', dx:22, dy:0},
+        {lon:13.4, lat:52.5, color:'#1f6f5c', r:18, label:'Berlin', dx:22, dy:0},
+        {lon:-3.7, lat:40.4, color:'#1f6f5c', r:18, label:'Madrid', dx:22, dy:0},
+        {lon:4.35, lat:50.85, color:'#a3283f', r:12, label:'Bruxelles', dx:16, dy:16}
+      ]
+    });
+  }
+}
+];
+
+const flashcardBank = [
+  {front:"Aire urbaine", back:"Une ville-centre et les communes environnantes fortement liees a elle par les deplacements domicile-travail."},
+  {front:"Etalement urbain", back:"Extension progressive de la zone urbanisee au-dela des limites de la ville-centre."},
+  {front:"Migration pendulaire", back:"Deplacement quotidien, aller-retour, entre le lieu de residence et le lieu de travail ou d'etudes."},
+  {front:"Zone d'influence", back:"Espace sur lequel une ville exerce une attraction (emploi, commerces, services)."},
+  {front:"Bassin d'emploi", back:"Territoire dans lequel la majorite des habitants trouvent un emploi sans devoir le quitter."},
+  {front:"Facteur de localisation", back:"Element qui explique pourquoi une fonction (logement, emploi, commerce...) s'implante a tel endroit plutot qu'a un autre."},
+  {front:"Modele centre/peripherie", back:"Un centre concentre les fonctions rares (pouvoir, grands commerces) ; la peripherie est plus residentielle."},
+  {front:"Monocentrisme / polycentrisme", back:"Une aire urbaine organisee autour d'un seul centre dominant, ou autour de plusieurs centres."},
+  {front:"Monofonctionnel / polyfonctionnel", back:"Un espace qui accueille une seule fonction dominante, ou plusieurs fonctions melangees."},
+  {front:"Le Sillon Sambre-Meuse", back:"Ancien axe industriel wallon reliant Charleroi, Namur et Liege."},
+  {front:"Les 7 aires urbaines belges", back:"Anvers, Bruges, Bruxelles, Charleroi, Gand, Liege, Namur."}
+];
+
+const gameRounds = [
+  {kind:'belgium', prompt:"Clique sur la Region flamande (Anvers, Bruges, Gand).", region:'Flandre'},
+  {kind:'belgium', prompt:"Clique sur la Region wallonne (Sillon Sambre-Meuse).", region:'Wallonie'},
+  {kind:'belgium', prompt:"Clique sur la Region de Bruxelles-Capitale.", region:'Bruxelles'},
+  {kind:'world', prompt:"Zoom Europe : clique sur Paris.", lon:2.35, lat:48.85, tol:15,
+    crop:{ lonMin:-10, lonMax:20, latMin:40, latMax:58 }},
+  {kind:'world', prompt:"Zoom Europe : clique sur Londres.", lon:-0.13, lat:51.5, tol:15,
+    crop:{ lonMin:-10, lonMax:20, latMin:40, latMax:58 }},
+  {kind:'world', prompt:"Zoom Europe : clique sur Berlin.", lon:13.4, lat:52.5, tol:15,
+    crop:{ lonMin:-10, lonMax:20, latMin:40, latMax:58 }},
+  {kind:'world', prompt:"Zoom Europe : clique sur Madrid.", lon:-3.7, lat:40.4, tol:15,
+    crop:{ lonMin:-10, lonMax:20, latMin:40, latMax:58 }}
+];
+
+const exerciseBank = [
+  { type:'mcq', points:1,
+    prompt:"Le deplacement quotidien entre le domicile et le lieu de travail s'appelle :",
+    options:["l'etalement urbain","la migration pendulaire","le bassin d'emploi","la zone d'influence"],
+    correct:1,
+    explain:"La migration pendulaire designe precisement ce va-et-vient quotidien."
+  },
+  { type:'tf', points:1,
+    prompt:"Les modeles spatiaux de la ville doivent etre connus de memoire, comme le modele de la tectonique des plaques.",
+    correct:false,
+    explain:"Faux. Contrairement aux modeles de 5e, les modeles de la ville sont a comparer a un cas donne, pas a memoriser."
+  },
+  { type:'match', points:4,
+    prompt:"Associe chaque terme a sa definition.",
+    items:[
+      {left:"Aire urbaine", options:["Extension de la zone urbanisee au-dela de la ville-centre","Ville-centre et communes environnantes liees par les deplacements","Espace ou une ville exerce une attraction","Territoire ou l'on trouve un emploi sans le quitter"], correct:"Ville-centre et communes environnantes liees par les deplacements"},
+      {left:"Etalement urbain", options:["Extension de la zone urbanisee au-dela de la ville-centre","Ville-centre et communes environnantes liees par les deplacements","Espace ou une ville exerce une attraction","Territoire ou l'on trouve un emploi sans le quitter"], correct:"Extension de la zone urbanisee au-dela de la ville-centre"},
+      {left:"Zone d'influence", options:["Extension de la zone urbanisee au-dela de la ville-centre","Ville-centre et communes environnantes liees par les deplacements","Espace ou une ville exerce une attraction","Territoire ou l'on trouve un emploi sans le quitter"], correct:"Espace ou une ville exerce une attraction"},
+      {left:"Bassin d'emploi", options:["Extension de la zone urbanisee au-dela de la ville-centre","Ville-centre et communes environnantes liees par les deplacements","Espace ou une ville exerce une attraction","Territoire ou l'on trouve un emploi sans le quitter"], correct:"Territoire ou l'on trouve un emploi sans le quitter"}
+    ],
+    explain:"Ce vocabulaire de l'aire urbaine sera reutilise dans tous les modules suivants de 6e."
+  },
+  { type:'classify', points:3,
+    prompt:"Pour chacune des situations suivantes, indique si elle illustre plutot le monocentrisme ou le polycentrisme.",
+    classifyOptions:["Monocentrisme","Polycentrisme"],
+    items:[
+      {text:"Bruxelles, organisee autour d'un centre historique tres dominant", correct:"Monocentrisme"},
+      {text:"Le Sillon Sambre-Meuse, avec Charleroi, Namur et Liege de taille comparable", correct:"Polycentrisme"},
+      {text:"Une aire urbaine ou toutes les grandes fonctions se concentrent dans une seule ville-centre", correct:"Monocentrisme"},
+      {text:"Une region ou plusieurs villes se partagent les fonctions rares", correct:"Polycentrisme"}
+    ],
+    explain:"Le meme pays (la Belgique) peut illustrer les deux modeles selon l'echelle et la region observees."
+  },
+  { type:'data', points:2,
+    prompt:"D'apres la theorie (section 5), identifie la region de chaque aire urbaine.",
+    tableHtml:`<table class="data"><tr><th>Aire urbaine</th><th>Region</th></tr>
+      <tr><td>Anvers</td><td>?</td></tr>
+      <tr><td>Charleroi</td><td>?</td></tr>
+      <tr><td>Bruxelles</td><td>?</td></tr></table>`,
+    subquestions:[
+      {prompt:"Dans quelle region se trouve Anvers ?", accepted:["region flamande","flandre","flamande"]},
+      {prompt:"Dans quelle region se trouve Charleroi ?", accepted:["region wallonne","wallonie","wallonne"]}
+    ],
+    explain:"Anvers est en Region flamande, Charleroi en Region wallonne (Sillon Sambre-Meuse), Bruxelles dans sa propre region."
+  },
+  { type:'open', points:3,
+    prompt:"Explique, en 4 a 5 phrases, la difference entre le modele monocentrique et le modele polycentrique, en utilisant les exemples de Bruxelles et du Sillon Sambre-Meuse.",
+    keywordGroups:[["monocentr"],["polycentr"],["bruxelles"],["sillon","sambre","meuse","charleroi","namur","liege"]],
+    modelAnswer:"Une aire urbaine monocentrique s'organise autour d'un seul centre dominant qui concentre les fonctions les plus rares : c'est le cas de Bruxelles, dont le centre historique domine largement son agglomeration. A l'inverse, une organisation polycentrique repartit les fonctions entre plusieurs centres de taille comparable : le Sillon Sambre-Meuse en est un bon exemple, avec Charleroi, Namur et Liege qui jouent chacune un role important sans qu'aucune ne domine totalement les autres. La comparaison entre ces deux cas montre qu'un meme pays peut presenter des organisations spatiales tres differentes selon l'echelle et la region observees."
+  }
+];
+
+const examBank = [
+  { type:'mcq', points:1,
+    prompt:"L'extension progressive de la zone urbanisee au-dela des limites de la ville-centre s'appelle :",
+    options:["la migration pendulaire","l'etalement urbain","le bassin d'emploi","le conflit d'usage"],
+    correct:1
+  },
+  { type:'mcq', points:1,
+    prompt:"Un espace « monofonctionnel » est un espace qui :",
+    options:["accueille plusieurs fonctions melangees","accueille une seule fonction dominante","n'accueille aucune fonction","change de fonction chaque annee"],
+    correct:1
+  },
+  { type:'mcq', points:1,
+    prompt:"Le Sillon Sambre-Meuse relie principalement :",
+    options:["Anvers, Bruges et Gand","Charleroi, Namur et Liege","Bruxelles et Anvers uniquement","Namur et Bruges uniquement"],
+    correct:1
+  },
+  { type:'mcq', points:1,
+    prompt:"Les modeles spatiaux de la ville (centre/peripherie, mono/polycentrisme...) doivent, selon le programme :",
+    options:["etre appris par coeur comme les modeles de 5e","etre compares a un cas concret qu'on te communique","etre ignores en 6e annee","s'appliquer uniquement a la Belgique"],
+    correct:1
+  },
+  { type:'mcq', points:1,
+    prompt:"Quelle aire urbaine belge se trouve dans la Region de Bruxelles-Capitale ?",
+    options:["Charleroi","Namur","Bruxelles","Liege"],
+    correct:2
+  },
+  { type:'tf', points:1,
+    prompt:"Une fonction (logement, emploi, commerce...) se localise toujours au hasard, sans facteur explicatif.",
+    correct:false
+  },
+  { type:'tf', points:1,
+    prompt:"La Belgique compte sept aires urbaines principales.",
+    correct:true
+  },
+  { type:'match', points:4,
+    prompt:"Associe chaque terme a sa definition.",
+    items:[
+      {left:"Aire urbaine", options:["Extension de la zone urbanisee au-dela de la ville-centre","Ville-centre et communes environnantes liees par les deplacements","Espace ou une ville exerce une attraction","Territoire ou l'on trouve un emploi sans le quitter"], correct:"Ville-centre et communes environnantes liees par les deplacements"},
+      {left:"Etalement urbain", options:["Extension de la zone urbanisee au-dela de la ville-centre","Ville-centre et communes environnantes liees par les deplacements","Espace ou une ville exerce une attraction","Territoire ou l'on trouve un emploi sans le quitter"], correct:"Extension de la zone urbanisee au-dela de la ville-centre"},
+      {left:"Zone d'influence", options:["Extension de la zone urbanisee au-dela de la ville-centre","Ville-centre et communes environnantes liees par les deplacements","Espace ou une ville exerce une attraction","Territoire ou l'on trouve un emploi sans le quitter"], correct:"Espace ou une ville exerce une attraction"},
+      {left:"Bassin d'emploi", options:["Extension de la zone urbanisee au-dela de la ville-centre","Ville-centre et communes environnantes liees par les deplacements","Espace ou une ville exerce une attraction","Territoire ou l'on trouve un emploi sans le quitter"], correct:"Territoire ou l'on trouve un emploi sans le quitter"}
+    ]
+  },
+  { type:'data', points:2,
+    prompt:"D'apres la theorie (section 5), identifie la region de chaque aire urbaine.",
+    tableHtml:`<table class="data"><tr><th>Aire urbaine</th><th>Region</th></tr>
+      <tr><td>Gand</td><td>?</td></tr>
+      <tr><td>Liege</td><td>?</td></tr></table>`,
+    subquestions:[
+      {prompt:"Dans quelle region se trouve Gand ?", accepted:["region flamande","flandre","flamande"]},
+      {prompt:"Dans quelle region se trouve Liege ?", accepted:["region wallonne","wallonie","wallonne"]}
+    ]
+  },
+  { type:'classify', points:3,
+    prompt:"Pour chacune des situations suivantes, indique si elle illustre plutot le monocentrisme ou le polycentrisme.",
+    classifyOptions:["Monocentrisme","Polycentrisme"],
+    items:[
+      {text:"Bruxelles, organisee autour d'un centre historique tres dominant", correct:"Monocentrisme"},
+      {text:"Le Sillon Sambre-Meuse, avec Charleroi, Namur et Liege de taille comparable", correct:"Polycentrisme"},
+      {text:"Une aire urbaine ou toutes les grandes fonctions se concentrent dans une seule ville-centre", correct:"Monocentrisme"},
+      {text:"Une region ou plusieurs villes se partagent les fonctions rares", correct:"Polycentrisme"}
+    ]
+  },
+  { type:'open', points:3,
+    prompt:"Choisis une fonction d'un territoire (logement, emploi, commerce, sante...) et explique, en 4 a 5 phrases, au moins deux facteurs qui influencent sa localisation.",
+    keywordGroups:[["fonction"],["facteur","localisation"],["exemple"],["logement","emploi","commerce","sante","transport"]],
+    modelAnswer:"Prenons la fonction commerciale. Un grand commerce se localise souvent en tenant compte de son accessibilite : proximite d'un axe routier important, presence de parkings, facilite d'acces pour la clientele. Le prix du terrain joue aussi un role determinant : les grandes surfaces s'installent plus facilement en peripherie, ou le foncier est moins cher qu'en centre-ville. Enfin, la proximite de la clientele potentielle (densite de population, pouvoir d'achat du bassin de vie) est un facteur essentiel. Ces exemples montrent qu'une fonction ne se localise jamais au hasard, mais selon une combinaison de facteurs de localisation."
+  }
+];
+
+GeoEngine.initModule({
+  id: 'm5-ville-fonctions',
+  eyebrow: "Geographie &middot; 6e annee &middot; Module 5/8 &middot; Reseau libre confessionnel (FESeC)",
+  title: "La ville, ses fonctions et ses modeles spatiaux",
+  subtitle: "Premier module du programme de 6e annee. 60% requis pour debloquer le module suivant.",
+  introHtml: `
+    <p>Bienvenue en 6e annee ! Ce module ouvre le theme de l'<strong>amenagement du territoire</strong>, qui remobilise tout ce que tu as appris en 5e. Tu vas apprendre le vocabulaire de l'aire urbaine et comparer des cas reels (Bruxelles, le Sillon Sambre-Meuse) a des modeles spatiaux de la ville.</p>
+    <div class="callout warn">
+      <strong>Precision honnete :</strong> comme pour les modules de 5e, il n'existe pas de banque officielle d'examens de geographie en FWB. Les questions sont construites a partir des types de taches du programme FESeC.
+    </div>
+  `,
+  examTitle: "la ville, ses fonctions et ses modeles spatiaux",
+  passThreshold: 60,
+  theorySlides, flashcardBank, gameRounds, exerciseBank, examBank,
+  hubHref: 'index.html',
+  nextHref: 'module-6.html',
+  nextTitle: 'Justifier un amenagement du territoire',
+  footerHtml: 'Module 5/8 (6e) &middot; programme officiel FESeC 2018 (D/2018/7362/3/15) &middot; ressource privee pour etude a domicile.<br>Fonds de carte : "BlankMap-World-Equirectangular", John Harvey, domaine public (CC0), Wikimedia Commons &middot; "Regions of Belgium", Ssolbergj, CC BY 3.0, Wikimedia Commons.'
+});
+</script>
+</body>
+</html>
