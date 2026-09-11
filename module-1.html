@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geographie 5e - Module 1 : Ressources energetiques</title>
+<link rel="stylesheet" href="shared/engine.css">
+</head>
+<body>
+<div id="app-root"></div>
+<script>window.GEO_ASSET_BASE = 'assets/maps/';</script>
+<script src="shared/engine.js"></script>
+<script>
+const theorySlides = [
+{
+  title: "1. Objectifs de ce module",
+  html: `
+    <p>Le programme officiel fixe l'objectif suivant pour la 5e annee : faire prendre conscience que l'acces aux ressources en energie et aux autres matieres premieres genere des flux considerables, et que les actions humaines pour en faciliter l'acces ont des effets sur l'environnement naturel et humain.</p>
+    <p>Ce premier module se concentre sur la premiere brique de ce raisonnement : <strong>comprendre pourquoi ces ressources ne sont pas reparties de la meme facon partout sur Terre</strong>, et ce que cela change pour les pays concernes.</p>
+    <div class="callout">
+      <strong>A la fin de ce module, tu seras capable de :</strong>
+      <ul class="clean">
+        <li>definir et utiliser correctement : sous-sol, mine, energie renouvelable/non renouvelable, energie primaire/secondaire ;</li>
+        <li>decrire une repartition spatiale de ressources a partir d'une vraie carte ou d'un tableau de donnees ;</li>
+        <li>expliquer une situation en termes d'atouts et de contraintes spatiales ;</li>
+        <li>situer sur une carte les grandes regions productrices dans le monde.</li>
+      </ul>
+    </div>
+    <p><strong>Rappel utile :</strong> les concepts d'« atouts et contraintes » et de « continuites et discontinuites spatiales » ont deja ete vus en 3e et 4e annees, a propos des risques naturels puis de l'eau et de la nourriture. Ce module applique exactement le meme raisonnement, mais a l'energie et aux matieres premieres.</p>
+  `
+},
+{
+  title: "2. Les ressources energetiques : de quoi parle-t-on ?",
+  html: `
+    <p>Pour parler correctement de ce sujet, il faut maitriser quatre notions de base.</p>
+    <table class="data">
+      <tr><th>Notion</th><th>Definition</th><th>Exemple</th></tr>
+      <tr><td><strong>Sous-sol</strong></td><td>Ce qui se trouve sous la surface du sol : roches, minerais, hydrocarbures.</td><td>Le petrole se trouve dans le sous-sol, parfois sous plusieurs kilometres de roche.</td></tr>
+      <tr><td><strong>Mine</strong></td><td>Lieu d'extraction d'une ressource solide du sous-sol.</td><td>Les mines de cuivre du Chili, les mines de cobalt de RD Congo.</td></tr>
+      <tr><td><strong>Energie renouvelable</strong></td><td>Source d'energie qui se reconstitue naturellement a l'echelle d'une vie humaine.</td><td>Soleil, vent, eau (hydroelectricite), bois (si la foret est geree durablement).</td></tr>
+      <tr><td><strong>Energie non renouvelable</strong></td><td>Source d'energie disponible en quantite limitee, qui s'epuise a l'usage.</td><td>Petrole, gaz naturel, charbon, uranium.</td></tr>
+    </table>
+    <p>Une autre distinction, plus technique mais essentielle, est celle entre <strong>energie primaire</strong> et <strong>energie secondaire</strong>.</p>
+    <div class="callout">
+      <strong>Energie primaire</strong> : telle qu'on la trouve directement dans la nature, avant toute transformation (petrole brut, gaz naturel brut, charbon, vent, rayonnement solaire).<br>
+      <strong>Energie secondaire</strong> : obtenue apres transformation d'une energie primaire (essence, electricite, gaz naturel liquefie).
+    </div>
+    <div class="callout piege">
+      <strong>Piege frequent :</strong> l'electricite n'est jamais une energie primaire, meme quand elle provient d'une source renouvelable comme le vent. Le vent est l'energie primaire ; l'electricite produite par l'eolienne est l'energie secondaire.
+    </div>
+  `
+},
+{
+  title: "3. Une repartition inegale a l'echelle mondiale",
+  html: `
+    <p>Le sous-sol terrestre n'a pas la meme composition partout : cela depend de l'histoire geologique de chaque region. Les ressources energetiques et les matieres premieres sont donc <strong>concentrees dans certaines zones</strong> et absentes ailleurs.</p>
+    <div id="theory-map-3"></div>
+    <p class="map-caption">Carte reelle (projection equirectangulaire). Points verts : grandes zones de production d'hydrocarbures. Points orange : grandes zones minieres.</p>
+    <ul class="clean">
+      <li><strong>Hydrocarbures (petrole, gaz)</strong> : golfe Persique, golfe du Mexique, mer du Nord, Siberie occidentale (Russie).</li>
+      <li><strong>Minerais et metaux</strong> : Copperbelt d'Afrique centrale (cuivre, cobalt : Zambie, Republique democratique du Congo), Cordillere des Andes (cuivre, lithium : Chili, Perou), Australie occidentale (fer, lithium), Kazakhstan (uranium).</li>
+    </ul>
+    <table class="data">
+      <caption>Tableau 1. Principaux pays producteurs de petrole brut (ordre de grandeur, debut des annees 2020, en millions de barils par jour)</caption>
+      <tr><th>Pays</th><th>Production approximative</th></tr>
+      <tr><td>Etats-Unis</td><td>19 a 20</td></tr>
+      <tr><td>Arabie saoudite</td><td>11 a 12</td></tr>
+      <tr><td>Russie</td><td>10 a 11</td></tr>
+      <tr><td>Canada</td><td>environ 5,5</td></tr>
+      <tr><td>Irak</td><td>environ 4,5</td></tr>
+      <tr><td>Chine</td><td>environ 4,5</td></tr>
+    </table>
+    <p>Dans ce tableau (Russie comptee comme pays europeen pour cet exercice), on observe une concentration sur un petit nombre de pays. C'est exactement ce que veut dire l'expression <strong>« repartition inegale »</strong>.</p>
+  `,
+  postRender: function(helpers){
+    helpers.renderWorldMap(document.getElementById('theory-map-3'), {
+      markers: [
+        {lon:51, lat:26, color:'#1f6f5c', r:24, label:'Golfe Persique', dx:30, dy:-14},
+        {lon:3, lat:56, color:'#1f6f5c', r:20, label:'Mer du Nord', dx:30, dy:0},
+        {lon:-90, lat:25, color:'#1f6f5c', r:20, label:'Golfe du Mexique', dx:-320, dy:0},
+        {lon:75, lat:62, color:'#1f6f5c', r:20, label:'Siberie occ.', dx:30, dy:0},
+        {lon:27, lat:-11, color:'#b5541c', r:22, label:'Copperbelt', dx:30, dy:0},
+        {lon:-70, lat:-30, color:'#b5541c', r:22, label:'Andes', dx:-220, dy:0},
+        {lon:122, lat:-25, color:'#b5541c', r:22, label:'Australie occ.', dx:30, dy:0},
+        {lon:67, lat:48, color:'#b5541c', r:20, label:'Kazakhstan', dx:30, dy:-14}
+      ]
+    });
+  }
+},
+{
+  title: "4. Le concept d'atouts et de contraintes",
+  html: `
+    <p>Posseder une ressource dans son sous-sol n'est ni un hasard sans consequence, ni une garantie automatique de richesse. C'est un <strong>atout spatial</strong> : un element du territoire qui favorise le developpement des activites humaines. A l'inverse, l'absence de cette ressource, ou la difficulte a l'exploiter, constitue une <strong>contrainte spatiale</strong>.</p>
+    <div class="callout">
+      Un meme element peut etre un atout pour une activite et une contrainte pour une autre. Un relief tres montagneux est une contrainte pour l'agriculture, mais peut etre un atout pour l'hydroelectricite (barrages, denivele).
+    </div>
+    <h3>Deux situations contrastees</h3>
+    <div id="theory-map-4"></div>
+    <p><strong>La Norvege</strong> dispose d'importantes reserves de petrole et de gaz en mer du Nord, decouvertes a la fin des annees 1960. Son relief tres accidente, fait de fjords profonds, est une contrainte pour les infrastructures terrestres, mais un atout pour la production d'hydroelectricite. Ces deux atouts combines expliquent pourquoi la Norvege exporte une grande partie de son energie plutot que d'en dependre.</p>
+    <p><strong>La Belgique</strong>, a l'inverse, ne dispose pratiquement d'aucune reserve exploitable de petrole ou de gaz naturel dans son sous-sol. Elle importe la quasi-totalite de l'energie fossile qu'elle consomme. C'est une contrainte structurelle qui pousse le pays a diversifier ses sources (nucleaire, eolien en mer du Nord, importations par pipeline et par bateau).</p>
+    <div class="callout piege">
+      <strong>Piege frequent :</strong> « atout » et « contrainte » ne sont pas des jugements de valeur sur un pays (« riche » ou « pauvre », « bien » ou « mal »). Ce sont des caracteristiques spatiales objectives que l'on peut observer et decrire, independamment du niveau de developpement du pays.
+    </div>
+  `,
+  postRender: function(helpers){
+    helpers.renderWorldMap(document.getElementById('theory-map-4'), {
+      markers: [
+        {lon:8, lat:61, color:'#1f6f5c', r:22, label:'Norvege (atout)', dx:30, dy:0},
+        {lon:4.5, lat:50.5, color:'#a3283f', r:16, label:'Belgique (contrainte)', dx:20, dy:-20}
+      ]
+    });
+  }
+},
+{
+  title: "5. La demarche geographique : decrire une repartition",
+  html: `
+    <p>Face a une carte ou un tableau de donnees, la demarche geographique consiste toujours a suivre les memes etapes.</p>
+    <ol class="clean">
+      <li><strong>Identifier l'echelle</strong> : mondiale, continentale, europeenne, belge ? Cela change ce que l'on peut affirmer.</li>
+      <li><strong>Decrire la repartition</strong> avec du vocabulaire precis : concentration, dispersion, continuite, discontinuite, inegalite, contraste. Toujours s'appuyer sur des reperes spatiaux nommes (pays, mers, region).</li>
+      <li><strong>Comparer</strong> cette repartition avec une autre (par exemple la repartition de la population, ou celle d'une autre ressource) pour reperer des liens eventuels.</li>
+      <li><strong>Traduire en atouts/contraintes</strong> pour les activites humaines du territoire concerne.</li>
+    </ol>
+    <div class="callout">
+      <strong>Exemple de phrase bien construite :</strong> « La production mondiale de petrole est concentree sur un petit nombre de pays du Moyen-Orient, d'Amerique du Nord et de Russie, alors que de vastes regions comme l'Afrique subsaharienne ou l'Europe occidentale en produisent tres peu : c'est une repartition inegale, qui cree un atout majeur pour les premiers et une contrainte energetique pour les seconds. »
+    </div>
+    <h3>Une carte ou un croquis de qualite comprend toujours</h3>
+    <ul class="clean">
+      <li>un titre qui annonce ce qui est represente ;</li>
+      <li>une legende claire ;</li>
+      <li>une echelle ou un ordre de grandeur ;</li>
+      <li>une orientation (le nord, sauf indication contraire) ;</li>
+      <li>la source de l'information.</li>
+    </ul>
+  `
+},
+{
+  title: "6. Reperes spatiaux a connaitre pour ce module",
+  html: `
+    <p>Pour ce module, il faut pouvoir situer, meme approximativement, les elements suivants sur une carte muette.</p>
+    <table class="data">
+      <tr><th>Ressource</th><th>Region ou pays a connaitre</th></tr>
+      <tr><td>Petrole et gaz</td><td>Golfe Persique, mer du Nord, golfe du Mexique, Siberie occidentale</td></tr>
+      <tr><td>Cuivre et lithium</td><td>Chili, Perou (Cordillere des Andes), Australie occidentale</td></tr>
+      <tr><td>Cobalt</td><td>Republique democratique du Congo (la grande majorite de la production mondiale)</td></tr>
+      <tr><td>Uranium</td><td>Kazakhstan (premier producteur mondial)</td></tr>
+    </table>
+    <p>A l'echelle europeenne et belge, le programme de 5e demande d'installer de nouveaux reperes (relief, cours d'eau et mers d'Europe). Pour ce module, voici la carte reelle des trois regions belges, utile pour situer la Belgique dans ses propres divisions administratives : la <strong>Region flamande</strong>, la <strong>Region wallonne</strong> et la petite <strong>Region de Bruxelles-Capitale</strong>, enclavee entre les deux autres.</p>
+    <div class="belgium-map-wrap" id="theory-map-6"></div>
+    <div class="belgium-legend">
+      <span><i class="legend-dot" style="background:#fab274;"></i>Region flamande</span>
+      <span><i class="legend-dot" style="background:#f2536b;"></i>Region wallonne</span>
+      <span><i class="legend-dot" style="background:#2385d2;"></i>Region de Bruxelles-Capitale</span>
+    </div>
+    <p>Deux reperes a retenir pour ce module en particulier :</p>
+    <ul class="clean">
+      <li><strong>La mer du Nord</strong>, qui borde la Belgique et ou se trouvent a la fois des gisements d'hydrocarbures (cote britannique et norvegienne surtout) et un potentiel eolien exploite par la Belgique elle-meme.</li>
+      <li>La Belgique, avec ses trois regions, est structurellement importatrice nette d'energie fossile : c'est une contrainte qui concerne le pays dans son ensemble, quelle que soit la region.</li>
+    </ul>
+    <div class="callout">
+      Les autres reperes europeens du programme (Alpes, Rhin, mer Mediterranee, grands ensembles bioclimatiques...) seront installes progressivement dans les modules suivants, au moment ou ils deviennent utiles.
+    </div>
+    <p><strong>Tu as termine la theorie de ce module.</strong> Tu peux maintenant passer a l'entrainement : flashcards, jeu de la carte et quiz t'attendent, sans pression, avant l'examen.</p>
+  `,
+  postRender: function(helpers){
+    helpers.loadBelgiumSvgMarkup().then(markup=>{
+      document.getElementById('theory-map-6').innerHTML = markup;
+    });
+  }
+}
+];
+
+const flashcardBank = [
+  {front:"Sous-sol", back:"Ce qui se trouve sous la surface du sol : roches, minerais, hydrocarbures."},
+  {front:"Mine", back:"Lieu d'extraction d'une ressource solide du sous-sol (ex : cuivre, cobalt)."},
+  {front:"Energie renouvelable", back:"Source d'energie qui se reconstitue naturellement a l'echelle d'une vie humaine (soleil, vent, eau)."},
+  {front:"Energie non renouvelable", back:"Source d'energie disponible en quantite limitee, qui s'epuise a l'usage (petrole, gaz, charbon, uranium)."},
+  {front:"Energie primaire", back:"Telle qu'on la trouve directement dans la nature, avant transformation (petrole brut, vent, soleil)."},
+  {front:"Energie secondaire", back:"Obtenue apres transformation d'une energie primaire (essence, electricite, gaz naturel liquefie)."},
+  {front:"Atout spatial", back:"Element du territoire qui favorise le developpement des activites humaines."},
+  {front:"Contrainte spatiale", back:"Element du territoire qui complique le developpement des activites humaines."},
+  {front:"Premier producteur mondial de cobalt", back:"La Republique democratique du Congo."},
+  {front:"Premier producteur mondial d'uranium", back:"Le Kazakhstan."},
+  {front:"Premier producteur mondial de lithium", back:"L'Australie."},
+  {front:"Pays a l'atout petrole/gaz (mer du Nord) et hydroelectricite (fjords)", back:"La Norvege."},
+  {front:"Pourquoi la Belgique importe-t-elle presque toute son energie fossile ?", back:"Parce que son sous-sol ne contient pratiquement pas d'hydrocarbures exploitables."}
+];
+
+const gameRounds = [
+  {kind:'world', prompt:"Clique sur le Kazakhstan (1er producteur mondial d'uranium).", lon:67, lat:48, tol:110},
+  {kind:'world', prompt:"Clique sur la Republique democratique du Congo (1er producteur mondial de cobalt).", lon:23, lat:-2, tol:95},
+  {kind:'world', prompt:"Clique sur le Chili (grand producteur de cuivre et de lithium, Cordillere des Andes).", lon:-71, lat:-30, tol:75},
+  {kind:'world', prompt:"Clique sur l'Australie (1er producteur mondial de lithium).", lon:134, lat:-25, tol:170},
+  {kind:'world', prompt:"Clique sur la Norvege (atout : petrole et gaz en mer du Nord).", lon:10, lat:62, tol:75},
+  {kind:'world', prompt:"Clique sur les Etats-Unis (1er producteur mondial de petrole actuellement).", lon:-98, lat:39, tol:150},
+  {kind:'belgium', prompt:"Clique sur la Region flamande.", region:'Flandre'},
+  {kind:'belgium', prompt:"Clique sur la Region wallonne.", region:'Wallonie'},
+  {kind:'belgium', prompt:"Clique sur la (petite) Region de Bruxelles-Capitale.", region:'Bruxelles'}
+];
+
+const exerciseBank = [
+  { type:'mcq', points:1,
+    prompt:"Le petrole brut, tel qu'on l'extrait du sous-sol avant toute transformation, est un exemple de :",
+    options:["energie primaire","energie secondaire","energie renouvelable","ressource inepuisable"],
+    correct:0,
+    explain:"Le petrole brut n'a subi aucune transformation : c'est une energie primaire. L'essence, elle, serait une energie secondaire."
+  },
+  { type:'tf', points:1,
+    prompt:"Toutes les ressources energetiques sont epuisables, quelle que soit la maniere dont on les exploite.",
+    correct:false,
+    explain:"Faux. Les energies renouvelables (soleil, vent, eau) se reconstituent naturellement a l'echelle humaine."
+  },
+  { type:'match', points:4,
+    prompt:"Associe chaque ressource a sa principale region ou pays producteur.",
+    items:[
+      {left:"Cobalt", options:["Republique democratique du Congo","Kazakhstan","Australie","Etats-Unis"], correct:"Republique democratique du Congo"},
+      {left:"Uranium", options:["Republique democratique du Congo","Kazakhstan","Australie","Etats-Unis"], correct:"Kazakhstan"},
+      {left:"Lithium (premier producteur mondial)", options:["Republique democratique du Congo","Kazakhstan","Australie","Etats-Unis"], correct:"Australie"},
+      {left:"Petrole (premier producteur mondial actuel)", options:["Republique democratique du Congo","Kazakhstan","Australie","Etats-Unis"], correct:"Etats-Unis"}
+    ],
+    explain:"Ces associations reviendront dans les modules suivants sur les flux de matieres premieres."
+  },
+  { type:'data', points:2,
+    prompt:"Observe le tableau de production petroliere vu dans la theorie (section 3), puis reponds.",
+    tableHtml:`<table class="data"><tr><th>Pays</th><th>Production (Mb/j, ordre de grandeur)</th></tr>
+      <tr><td>Etats-Unis</td><td>19-20</td></tr><tr><td>Arabie saoudite</td><td>11-12</td></tr>
+      <tr><td>Russie</td><td>10-11</td></tr><tr><td>Canada</td><td>5,5</td></tr>
+      <tr><td>Irak</td><td>4,5</td></tr><tr><td>Chine</td><td>4,5</td></tr></table>`,
+    subquestions:[
+      {prompt:"Quel pays est le premier producteur mondial de petrole dans ce tableau ?", accepted:["etats-unis","les etats-unis","usa"]},
+      {prompt:"En comptant la Russie comme un pays europeen, combien de pays de ce tableau se situent en Asie ?", accepted:["2","deux"]}
+    ],
+    explain:"Etats-Unis en tete, puis Arabie saoudite et Irak pour l'Asie (2 pays sur les 6 du tableau)."
+  },
+  { type:'classify', points:3,
+    prompt:"Pour chacun des elements suivants concernant la Norvege, indique s'il s'agit d'un atout ou d'une contrainte.",
+    items:[
+      {text:"D'importantes reserves de petrole et de gaz en mer du Nord", correct:"Atout"},
+      {text:"Un relief tres accidente qui complique les infrastructures terrestres", correct:"Contrainte"},
+      {text:"De nombreux fjords profonds qui permettent l'hydroelectricite", correct:"Atout"},
+      {text:"Un climat froid qui augmente les besoins en chauffage", correct:"Contrainte"},
+      {text:"Un acces direct a la mer du Nord qui facilite l'exportation", correct:"Atout"},
+      {text:"Une population peu nombreuse par rapport au territoire, ce qui limite la main-d'oeuvre disponible", correct:"Contrainte"}
+    ],
+    explain:"Le meme pays cumule souvent des atouts et des contraintes en meme temps."
+  },
+  { type:'open', points:3,
+    prompt:"Pourquoi l'acces a l'energie cree-t-il un atout pour certains pays et une contrainte pour d'autres ? Donne un exemple de chaque (4 a 5 phrases).",
+    keywordGroups:[["atout","ressource"],["norvege","exporte","exportation"],["contrainte","depend","importe","importation"],["belgique","japon"]],
+    modelAnswer:"Un pays dont le sous-sol contient d'importantes reserves de petrole, de gaz ou de minerais dispose d'un atout : il peut exploiter et exporter cette ressource. La Norvege en est un bon exemple, grace a ses reserves de mer du Nord. A l'inverse, un pays dont le sous-sol est pauvre en hydrocarbures, comme la Belgique, subit une contrainte : il doit importer la quasi-totalite de son energie fossile, ce qui le rend dependant des pays producteurs et des prix mondiaux.",
+    explain:"Corrige-modele fourni ci-dessous."
+  }
+];
+
+const examBank = [
+  { type:'mcq', points:1,
+    prompt:"Le gaz naturel liquefie (GNL), obtenu apres transformation du gaz naturel brut, est un exemple de :",
+    options:["energie primaire","energie secondaire","ressource renouvelable","matiere premiere agricole"],
+    correct:1
+  },
+  { type:'mcq', points:1,
+    prompt:"Parmi ces sources d'energie, laquelle est renouvelable ?",
+    options:["le charbon","le petrole","l'hydroelectricite","le gaz naturel"],
+    correct:2
+  },
+  { type:'mcq', points:1,
+    prompt:"En geographie, le terme « sous-sol » designe :",
+    options:["uniquement la couche arable utilisee en agriculture","les ressources minerales et energetiques situees sous la surface terrestre","le sol construit des villes","uniquement les nappes d'eau souterraines"],
+    correct:1
+  },
+  { type:'mcq', points:1,
+    prompt:"Quel pays est cite en exemple pour un atout majeur lie a des hydrocarbures situes en mer du Nord ?",
+    options:["le Japon","la Norvege","la Republique democratique du Congo","le Kazakhstan"],
+    correct:1
+  },
+  { type:'mcq', points:1,
+    prompt:"Pourquoi la Belgique importe-t-elle la quasi-totalite du petrole et du gaz qu'elle consomme ?",
+    options:["parce que son sous-sol ne contient pratiquement pas d'hydrocarbures exploitables","parce qu'une loi le lui interdit","parce qu'elle prefere ne pas exploiter ses reserves","parce qu'elle exporte tout ce qu'elle produit"],
+    correct:0
+  },
+  { type:'tf', points:1,
+    prompt:"Une ressource renouvelable ne peut jamais etre epuisee ou degradee, quelle que soit la maniere dont on l'exploite.",
+    correct:false
+  },
+  { type:'tf', points:1,
+    prompt:"La repartition des ressources energetiques sur Terre est homogene, c'est-a-dire semblable partout.",
+    correct:false
+  },
+  { type:'match', points:4,
+    prompt:"Associe chaque ressource a sa principale region ou pays producteur.",
+    items:[
+      {left:"Cobalt", options:["Republique democratique du Congo","Kazakhstan","Australie","Etats-Unis"], correct:"Republique democratique du Congo"},
+      {left:"Uranium", options:["Republique democratique du Congo","Kazakhstan","Australie","Etats-Unis"], correct:"Kazakhstan"},
+      {left:"Lithium (premier producteur mondial)", options:["Republique democratique du Congo","Kazakhstan","Australie","Etats-Unis"], correct:"Australie"},
+      {left:"Petrole (premier producteur mondial actuel)", options:["Republique democratique du Congo","Kazakhstan","Australie","Etats-Unis"], correct:"Etats-Unis"}
+    ]
+  },
+  { type:'data', points:2,
+    prompt:"A partir du tableau ci-dessous :",
+    tableHtml:`<table class="data"><tr><th>Pays</th><th>Production (Mb/j, ordre de grandeur)</th></tr>
+      <tr><td>Etats-Unis</td><td>19-20</td></tr><tr><td>Arabie saoudite</td><td>11-12</td></tr>
+      <tr><td>Russie</td><td>10-11</td></tr><tr><td>Canada</td><td>5,5</td></tr>
+      <tr><td>Irak</td><td>4,5</td></tr><tr><td>Chine</td><td>4,5</td></tr></table>`,
+    subquestions:[
+      {prompt:"Quel est le deuxieme producteur mondial de petrole dans ce tableau ?", accepted:["arabie saoudite","l arabie saoudite"]},
+      {prompt:"Cite un pays de ce tableau situe sur le continent americain.", accepted:["etats-unis","les etats-unis","usa","canada"]}
+    ]
+  },
+  { type:'classify', points:3,
+    prompt:"Pour chacun des elements suivants concernant la Norvege, indique s'il s'agit d'un atout ou d'une contrainte.",
+    items:[
+      {text:"D'importantes reserves de petrole et de gaz en mer du Nord", correct:"Atout"},
+      {text:"Un relief tres accidente qui complique les infrastructures terrestres", correct:"Contrainte"},
+      {text:"De nombreux fjords profonds qui permettent l'hydroelectricite", correct:"Atout"},
+      {text:"Un climat froid qui augmente les besoins en chauffage", correct:"Contrainte"},
+      {text:"Un acces direct a la mer du Nord qui facilite l'exportation", correct:"Atout"},
+      {text:"Une population peu nombreuse par rapport au territoire, ce qui limite la main-d'oeuvre disponible", correct:"Contrainte"}
+    ]
+  },
+  { type:'open', points:3,
+    prompt:"Explique, en 4 a 5 phrases, pourquoi la Norvege et le Japon peuvent avoir des situations tres differentes face a l'acces a l'energie, en utilisant les concepts d'atout et de contrainte.",
+    keywordGroups:[["atout"],["contrainte"],["petrole","gaz","hydroelectric"],["depend","importe","importation"]],
+    modelAnswer:"La Norvege dispose d'un atout energetique grace a ses reserves de petrole et de gaz en mer du Nord, ainsi qu'a son relief de fjords propice a l'hydroelectricite : elle peut exporter de l'energie. Le Japon, a l'inverse, a un sous-sol pauvre en hydrocarbures et un territoire montagneux peu adapte aux grandes reserves : c'est une contrainte qui le rend tres dependant des importations d'energie par bateau. Ces deux pays montrent que l'acces a l'energie depend d'abord de la geologie du territoire, independamment du niveau de developpement economique du pays."
+  }
+];
+
+GeoEngine.initModule({
+  id: 'm1-ressources',
+  eyebrow: "Geographie &middot; 5e annee &middot; Module 1/4 &middot; Reseau libre confessionnel (FESeC)",
+  title: "Les ressources energetiques et les autres matieres premieres",
+  subtitle: "Premier module du programme de 5e annee. Theorie, entrainement, examen. 60% requis pour debloquer le module suivant.",
+  introHtml: `
+    <p>Ce module suit le programme officiel FESeC, theme de 5e annee : <em>« Questions spatiales a propos de l'inegale repartition des populations et des ressources en energie et autres matieres premieres »</em>. C'est le premier des quatre modules de 5e (les trois suivants : mondialisation, migrations, amenagement/developpement durable).</p>
+    <div class="callout">
+      <strong>Objectif final :</strong> l'eleve doit presenter son CESS en fin de 6e. Il n'y a pas d'epreuve externe specifique de geographie, mais la rigueur de ce cours est calquee sur les exigences reelles de fin de secondaire.
+    </div>
+    <div class="callout warn">
+      <strong>Precision honnete :</strong> il n'existe pas de banque officielle d'examens de geographie en FWB. Les questions sont construites a partir des types de taches du programme FESeC, pas recopiees d'une epreuve reelle.
+    </div>
+  `,
+  examTitle: "les ressources energetiques et matieres premieres",
+  passThreshold: 60,
+  theorySlides, flashcardBank, gameRounds, exerciseBank, examBank,
+  hubHref: 'index.html',
+  nextHref: 'module-2.html',
+  nextTitle: 'Les flux de marchandises et la mondialisation',
+  footerHtml: 'Module 1/4 (5e) &middot; programme officiel FESeC 2018 (D/2018/7362/3/15) &middot; ressource privee pour etude a domicile.<br>Fonds de carte : "BlankMap-World-Equirectangular", John Harvey, domaine public (CC0), Wikimedia Commons &middot; "Regions of Belgium", Ssolbergj, CC BY 3.0, Wikimedia Commons.'
+});
+</script>
+</body>
+</html>

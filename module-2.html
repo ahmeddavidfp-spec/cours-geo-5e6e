@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geographie 5e - Module 2 : Mondialisation</title>
+<link rel="stylesheet" href="shared/engine.css">
+</head>
+<body>
+<div id="app-root"></div>
+<script>window.GEO_ASSET_BASE = 'assets/maps/';</script>
+<script src="shared/engine.js"></script>
+<script>
+const theorySlides = [
+{
+  title: "1. Objectifs de ce module",
+  html: `
+    <p>Le module 1 a montre que les ressources energetiques et les matieres premieres sont reparties de facon inegale sur Terre. Consequence directe : ces ressources doivent <strong>voyager</strong>, parfois sur des milliers de kilometres, entre le lieu ou elles sont extraites et le lieu ou elles sont consommees ou transformees.</p>
+    <p>Ce module etudie ces <strong>flux de marchandises</strong> et le concept qui les explique : la <strong>mondialisation</strong>.</p>
+    <div class="callout">
+      <strong>A la fin de ce module, tu seras capable de :</strong>
+      <ul class="clean">
+        <li>definir le concept de mondialisation en geographie ;</li>
+        <li>decrire un flux de marchandises en precisant sa direction et son intensite ;</li>
+        <li>expliquer pourquoi certains points du globe (detroits, canaux, grands ports) sont des passages obliges du commerce mondial ;</li>
+        <li>situer les grands corridors maritimes et les principaux ports mondiaux, dont le port d'Anvers.</li>
+      </ul>
+    </div>
+  `
+},
+{
+  title: "2. Le concept de mondialisation",
+  html: `
+    <p>En geographie, la <strong>mondialisation</strong> designe l'augmentation et l'intensification des echanges (marchandises, capitaux, personnes, informations) a l'echelle de la planete, qui rend les territoires de plus en plus interdependants.</p>
+    <div class="callout">
+      <strong>Mondialisation</strong> : mise en relation croissante des territoires du monde par des flux de plus en plus intenses et rapides.
+    </div>
+    <p>Pour la geographie, ce qui compte avant tout, c'est de pouvoir <strong>decrire et localiser ces flux</strong> : d'ou partent-ils, ou arrivent-ils, par quelle voie passent-ils, quelle est leur intensite (volume, valeur) ?</p>
+    <div class="callout piege">
+      <strong>Piege frequent :</strong> la mondialisation n'est pas seulement « le commerce avec la Chine » ou « internet ». C'est un concept general qui s'applique a tout flux (matieres premieres, produits finis, personnes, capitaux, informations) qui relie des territoires eloignes. Ce module se concentre sur les flux de <strong>marchandises</strong>.
+    </div>
+    <h3>Pourquoi les marchandises voyagent-elles autant ?</h3>
+    <ul class="clean">
+      <li>La ressource ou la matiere premiere n'est pas disponible partout (vu au module 1) : il faut donc l'acheminer vers les lieux de transformation ou de consommation.</li>
+      <li>La transformation d'un produit se fait souvent dans un pays different de celui qui fournit la matiere premiere et de celui qui consomme le produit fini : un meme objet peut traverser plusieurs pays avant d'arriver chez le consommateur.</li>
+    </ul>
+  `
+},
+{
+  title: "3. Decrire un flux : direction et intensite",
+  html: `
+    <p>Decrire un flux de marchandises suppose de repondre systematiquement a trois questions.</p>
+    <ol class="clean">
+      <li><strong>D'ou vers ou ?</strong> (la direction du flux, entre un lieu d'origine et un lieu de destination)</li>
+      <li><strong>Par quelle voie ?</strong> (route maritime, ferroviaire, routiere, aerienne ; les flux de marchandises lourdes et volumineuses passent presque toujours par la mer, la plus economique)</li>
+      <li><strong>Avec quelle intensite ?</strong> (volume transporte, valeur economique, frequence)</li>
+    </ol>
+    <div class="callout">
+      <strong>Exemple de phrase bien construite :</strong> « Le petrole brut extrait dans le golfe Persique est achemine par voie maritime vers l'Asie de l'Est et l'Europe : c'est un flux de tres forte intensite, qui passe obligatoirement par le detroit d'Ormuz avant de traverser l'ocean Indien. »
+    </div>
+    <p>Le transport maritime represente l'immense majorite du volume des marchandises echangees dans le monde, car un navire porte-conteneurs ou un petrolier peut transporter des quantites enormes a un cout tres faible par tonne. Cela explique pourquoi certains passages maritimes deviennent des points strategiques absolument essentiels : si l'on ne peut pas contourner facilement un continent, tous les flux se concentrent sur un meme <strong>detroit</strong> ou un meme <strong>canal</strong>.</p>
+  `
+},
+{
+  title: "4. Les grands corridors et points de passage maritimes",
+  html: `
+    <p>Une petite partie de l'espace maritime mondial concentre une part enorme du trafic commercial, car eviter ces passages obligerait a de tres longs detours.</p>
+    <div id="theory-map-4"></div>
+    <p class="map-caption">Carte reelle : detroits et canaux strategiques (rouge) et grands ports mondiaux a conteneurs (vert).</p>
+    <table class="data">
+      <tr><th>Passage</th><th>Pourquoi est-il strategique ?</th></tr>
+      <tr><td><strong>Detroit de Malacca</strong> (entre Indonesie, Malaisie et Singapour)</td><td>Route la plus courte entre l'ocean Indien et l'Asie de l'Est : environ un quart du commerce maritime mondial y transite.</td></tr>
+      <tr><td><strong>Detroit d'Ormuz</strong> (sortie du golfe Persique)</td><td>Passage oblige pour la quasi-totalite du petrole exporte par les pays du Golfe.</td></tr>
+      <tr><td><strong>Canal de Suez</strong> (Egypte)</td><td>Relie la mer Mediterranee a la mer Rouge : evite de contourner tout le continent africain entre l'Europe et l'Asie.</td></tr>
+      <tr><td><strong>Canal de Panama</strong> (Amerique centrale)</td><td>Relie l'ocean Atlantique a l'ocean Pacifique : evite de contourner l'Amerique du Sud.</td></tr>
+    </table>
+    <div class="callout piege">
+      <strong>Piege frequent :</strong> un detroit est un passage <em>naturel</em> entre deux mers (personne ne l'a construit), alors qu'un canal est <em>artificiel</em> (creuse par l'Homme). Suez et Panama sont des canaux ; Malacca et Ormuz sont des detroits.
+    </div>
+  `,
+  postRender: function(helpers){
+    helpers.renderWorldMap(document.getElementById('theory-map-4'), {
+      markers: [
+        {lon:100.5, lat:2.8, color:'#a3283f', r:20, label:'Detroit de Malacca', dx:25, dy:20},
+        {lon:56.3, lat:26.6, color:'#a3283f', r:18, label:"Detroit d'Ormuz", dx:25, dy:-10},
+        {lon:32.3, lat:30.5, color:'#a3283f', r:18, label:'Canal de Suez', dx:-260, dy:-10},
+        {lon:-79.7, lat:9, color:'#a3283f', r:18, label:'Canal de Panama', dx:-260, dy:0},
+        {lon:121.5, lat:31.2, color:'#1f6f5c', r:20, label:'Shanghai', dx:25, dy:0},
+        {lon:103.8, lat:1.3, color:'#1f6f5c', r:16, label:'Singapour', dx:25, dy:22},
+        {lon:4.5, lat:51.9, color:'#1f6f5c', r:16, label:'Rotterdam', dx:-230, dy:-10}
+      ]
+    });
+  }
+},
+{
+  title: "5. Etude de cas : la Belgique et le port d'Anvers",
+  html: `
+    <p>La Belgique, on l'a vu au module 1, importe la quasi-totalite de son energie fossile : c'est une contrainte. Mais face a la mondialisation, la Belgique dispose d'un <strong>atout majeur</strong> : le <strong>port d'Anvers-Bruges</strong>, le deuxieme port europeen pour le trafic de conteneurs, juste derriere Rotterdam (Pays-Bas).</p>
+    <div id="theory-map-5"></div>
+    <p class="map-caption">Zoom reel sur l'Europe du Nord-Ouest : Anvers et Rotterdam sont tres proches l'un de l'autre, a l'embouchure de grands fleuves.</p>
+    <div class="callout">
+      Anvers est relie a la mer du Nord par l'estuaire de l'Escaut. Cette position, combinee a un reseau dense de voies navigables, ferroviaires et routieres vers l'interieur de l'Europe, fait de la Belgique un point d'entree majeur des marchandises mondiales sur le continent : conteneurs, mais aussi petrole brut et produits chimiques.
+    </div>
+    <p>Cet exemple illustre bien la demarche geographique : un pays peut cumuler une <strong>contrainte</strong> (pas de ressources energetiques propres) et un <strong>atout</strong> (une position portuaire exceptionnelle) sur deux enjeux differents.</p>
+  `,
+  postRender: function(helpers){
+    helpers.renderWorldMap(document.getElementById('theory-map-5'), {
+      crop: { lonMin: -8, lonMax: 16, latMin: 42, latMax: 58 },
+      markers: [
+        {lon:4.4, lat:51.2, color:'#1f6f5c', r:16, label:'Anvers', dx:22, dy:10},
+        {lon:4.5, lat:51.9, color:'#154c3f', r:12, label:'Rotterdam', dx:22, dy:-14}
+      ]
+    });
+  }
+},
+{
+  title: "6. Reperes spatiaux a connaitre pour ce module",
+  html: `
+    <p>Pour ce module, il faut pouvoir situer sur une carte les elements suivants.</p>
+    <table class="data">
+      <tr><th>Categorie</th><th>A connaitre</th></tr>
+      <tr><td>Detroits strategiques</td><td>Detroit de Malacca, detroit d'Ormuz</td></tr>
+      <tr><td>Canaux strategiques</td><td>Canal de Suez, canal de Panama</td></tr>
+      <tr><td>Grands ports mondiaux a conteneurs</td><td>Shanghai (1er port mondial), Singapour</td></tr>
+      <tr><td>Grands ports europeens</td><td>Rotterdam (1er port europeen), Anvers-Bruges (2e port europeen)</td></tr>
+    </table>
+    <div class="callout">
+      Ces reperes viennent s'ajouter a ceux du module 1 (zones productrices d'hydrocarbures et de minerais). Au fil des modules, tu vas construire une carte mentale de plus en plus complete du monde.
+    </div>
+    <p><strong>Tu as termine la theorie de ce module.</strong> Passe maintenant a l'entrainement.</p>
+  `
+}
+];
+
+const flashcardBank = [
+  {front:"Mondialisation", back:"Mise en relation croissante des territoires du monde par des flux de plus en plus intenses et rapides."},
+  {front:"Detroit", back:"Passage maritime naturel et etroit entre deux mers ou oceans (ex : Malacca, Ormuz)."},
+  {front:"Canal (maritime)", back:"Passage maritime artificiel, creuse par l'Homme, entre deux mers (ex : Suez, Panama)."},
+  {front:"Le detroit qui concentre environ 1/4 du commerce maritime mondial", back:"Le detroit de Malacca."},
+  {front:"Le detroit indispensable a l'exportation du petrole du Golfe", back:"Le detroit d'Ormuz."},
+  {front:"Le canal qui relie la Mediterranee a la mer Rouge", back:"Le canal de Suez."},
+  {front:"Le canal qui relie l'Atlantique au Pacifique en Amerique centrale", back:"Le canal de Panama."},
+  {front:"1er port a conteneurs du monde", back:"Shanghai (Chine)."},
+  {front:"1er port europeen a conteneurs", back:"Rotterdam (Pays-Bas)."},
+  {front:"2e port europeen a conteneurs, un atout majeur pour la Belgique", back:"Anvers-Bruges."},
+  {front:"Les trois questions pour decrire un flux", back:"D'ou vers ou (direction) ? Par quelle voie ? Avec quelle intensite (volume, valeur) ?"},
+  {front:"Pourquoi le transport maritime domine les flux de marchandises", back:"Il permet de transporter d'enormes quantites a tres faible cout par tonne, malgre la lenteur."}
+];
+
+const gameRounds = [
+  {kind:'world', prompt:"Clique sur le detroit de Malacca.", lon:100.5, lat:2.8, tol:80},
+  {kind:'world', prompt:"Clique sur le detroit d'Ormuz.", lon:56.3, lat:26.6, tol:70},
+  {kind:'world', prompt:"Clique sur le canal de Suez.", lon:32.3, lat:30.5, tol:60},
+  {kind:'world', prompt:"Clique sur le canal de Panama.", lon:-79.7, lat:9, tol:60},
+  {kind:'world', prompt:"Clique sur Shanghai (1er port mondial a conteneurs).", lon:121.5, lat:31.2, tol:90},
+  {kind:'world', prompt:"Clique sur Singapour.", lon:103.8, lat:1.3, tol:70},
+  {kind:'world', prompt:"Clique sur le Bresil (pour verifier tes reperes du continent americain).", lon:-52, lat:-10, tol:170},
+  {kind:'world', prompt:"Zoom Europe : clique sur Anvers (2e port europeen, tout pres de Rotterdam : vise juste !).", lon:4.4, lat:51.2, tol:4,
+    crop:{ lonMin:-8, lonMax:16, latMin:42, latMax:58 }}
+];
+
+const exerciseBank = [
+  { type:'mcq', points:1,
+    prompt:"En geographie, la mondialisation designe avant tout :",
+    options:["l'usage d'internet dans le monde entier","la mise en relation croissante des territoires par des flux de plus en plus intenses","le fait que tous les pays parlent la meme langue","la disparition des frontieres politiques"],
+    correct:1,
+    explain:"La mondialisation, au sens geographique, c'est l'intensification des flux (marchandises, personnes, capitaux, informations) qui relient les territoires entre eux."
+  },
+  { type:'tf', points:1,
+    prompt:"Un canal est un passage maritime naturel, alors qu'un detroit est construit par l'Homme.",
+    correct:false,
+    explain:"C'est l'inverse : le detroit est naturel (Malacca, Ormuz), le canal est artificiel (Suez, Panama)."
+  },
+  { type:'match', points:4,
+    prompt:"Associe chaque passage a sa description.",
+    items:[
+      {left:"Detroit de Malacca", options:["Relie Atlantique et Pacifique","Relie Mediterranee et mer Rouge","Sortie du golfe Persique, cle pour le petrole","Passage entre Indonesie et Malaisie, 1/4 du trafic mondial"], correct:"Passage entre Indonesie et Malaisie, 1/4 du trafic mondial"},
+      {left:"Detroit d'Ormuz", options:["Relie Atlantique et Pacifique","Relie Mediterranee et mer Rouge","Sortie du golfe Persique, cle pour le petrole","Passage entre Indonesie et Malaisie, 1/4 du trafic mondial"], correct:"Sortie du golfe Persique, cle pour le petrole"},
+      {left:"Canal de Suez", options:["Relie Atlantique et Pacifique","Relie Mediterranee et mer Rouge","Sortie du golfe Persique, cle pour le petrole","Passage entre Indonesie et Malaisie, 1/4 du trafic mondial"], correct:"Relie Mediterranee et mer Rouge"},
+      {left:"Canal de Panama", options:["Relie Atlantique et Pacifique","Relie Mediterranee et mer Rouge","Sortie du golfe Persique, cle pour le petrole","Passage entre Indonesie et Malaisie, 1/4 du trafic mondial"], correct:"Relie Atlantique et Pacifique"}
+    ],
+    explain:"Ces quatre passages sont les plus cites du programme : deux detroits naturels, deux canaux artificiels."
+  },
+  { type:'data', points:2,
+    prompt:"D'apres le module, classe ces ports du plus important au moins important en trafic de conteneurs (Shanghai, Rotterdam, Anvers-Bruges).",
+    tableHtml:`<table class="data"><tr><th>Port</th><th>Statut</th></tr>
+      <tr><td>Shanghai</td><td>1er port mondial</td></tr>
+      <tr><td>Rotterdam</td><td>1er port europeen</td></tr>
+      <tr><td>Anvers-Bruges</td><td>2e port europeen</td></tr></table>`,
+    subquestions:[
+      {prompt:"Quel est le 1er port mondial a conteneurs ?", accepted:["shanghai"]},
+      {prompt:"Quel est le 2e port europeen a conteneurs (juste derriere Rotterdam) ?", accepted:["anvers","anvers-bruges","anvers bruges"]}
+    ],
+    explain:"Shanghai domine largement le classement mondial ; en Europe, Rotterdam devance de peu Anvers-Bruges."
+  },
+  { type:'classify', points:3,
+    prompt:"Pour chacun des elements suivants concernant la Belgique face a la mondialisation, indique s'il s'agit d'un atout ou d'une contrainte.",
+    items:[
+      {text:"Le port d'Anvers-Bruges, 2e port europeen a conteneurs", correct:"Atout"},
+      {text:"L'absence de reserves de petrole et de gaz dans le sous-sol", correct:"Contrainte"},
+      {text:"Un acces direct a la mer du Nord via l'estuaire de l'Escaut", correct:"Atout"},
+      {text:"Un reseau dense de voies navigables, ferroviaires et routieres vers l'interieur de l'Europe", correct:"Atout"},
+      {text:"La dependance a des importations d'energie transportees sur de tres longues distances", correct:"Contrainte"}
+    ],
+    explain:"Encore une fois, un meme pays cumule des atouts et des contraintes selon l'enjeu observe : ici, la position portuaire est un atout, l'energie reste une contrainte."
+  },
+  { type:'open', points:3,
+    prompt:"Pourquoi le detroit de Malacca et le canal de Suez sont-ils consideres comme des points strategiques du commerce mondial ? Explique en 4 a 5 phrases en utilisant le mot 'flux'.",
+    keywordGroups:[["flux"],["malacca"],["suez"],["detour","contourner","eviter"]],
+    modelAnswer:"Le detroit de Malacca et le canal de Suez sont des points de passage obliges pour d'immenses flux de marchandises. Le detroit de Malacca relie l'ocean Indien a l'Asie de l'Est et concentre environ un quart du trafic maritime mondial. Le canal de Suez permet d'eviter un tres long detour par le sud de l'Afrique pour relier l'Europe et l'Asie via la Mediterranee et la mer Rouge. Si l'un de ces passages est bloque, une part enorme du commerce mondial est immediatement perturbee, ce qui montre a quel point ces points precis concentrent les flux de la mondialisation.",
+    explain:"Corrige-modele fourni ci-dessous."
+  }
+];
+
+const examBank = [
+  { type:'mcq', points:1,
+    prompt:"Laquelle de ces affirmations decrit le mieux la mondialisation en geographie ?",
+    options:["La disparition progressive des Etats","L'intensification des flux qui relient les territoires du monde entre eux","Le fait que tous les produits soient fabriques en Chine","Une invention recente liee uniquement a internet"],
+    correct:1
+  },
+  { type:'mcq', points:1,
+    prompt:"Le canal de Panama relie :",
+    options:["la Mediterranee et la mer Rouge","l'ocean Atlantique et l'ocean Pacifique","la mer du Nord et la Baltique","l'ocean Indien et le Pacifique"],
+    correct:1
+  },
+  { type:'mcq', points:1,
+    prompt:"Le detroit d'Ormuz est strategique surtout pour le transport de :",
+    options:["conteneurs de vetements","cereales","petrole","automobiles"],
+    correct:2
+  },
+  { type:'mcq', points:1,
+    prompt:"Quel est le premier port a conteneurs au monde ?",
+    options:["Rotterdam","Anvers-Bruges","Singapour","Shanghai"],
+    correct:3
+  },
+  { type:'mcq', points:1,
+    prompt:"Pourquoi la quasi-totalite des marchandises lourdes voyage-t-elle par voie maritime ?",
+    options:["C'est le moyen le plus rapide","C'est le moyen le moins cher par tonne transportee sur de longues distances","C'est obligatoire par la loi internationale","Il n'existe pas d'autre solution technique"],
+    correct:1
+  },
+  { type:'tf', points:1,
+    prompt:"Malacca et Ormuz sont des canaux artificiels construits par l'Homme.",
+    correct:false
+  },
+  { type:'tf', points:1,
+    prompt:"Anvers-Bruges est le premier port europeen a conteneurs, devant Rotterdam.",
+    correct:false
+  },
+  { type:'match', points:4,
+    prompt:"Associe chaque passage a sa description.",
+    items:[
+      {left:"Detroit de Malacca", options:["Relie Atlantique et Pacifique","Relie Mediterranee et mer Rouge","Sortie du golfe Persique, cle pour le petrole","Passage entre Indonesie et Malaisie, 1/4 du trafic mondial"], correct:"Passage entre Indonesie et Malaisie, 1/4 du trafic mondial"},
+      {left:"Detroit d'Ormuz", options:["Relie Atlantique et Pacifique","Relie Mediterranee et mer Rouge","Sortie du golfe Persique, cle pour le petrole","Passage entre Indonesie et Malaisie, 1/4 du trafic mondial"], correct:"Sortie du golfe Persique, cle pour le petrole"},
+      {left:"Canal de Suez", options:["Relie Atlantique et Pacifique","Relie Mediterranee et mer Rouge","Sortie du golfe Persique, cle pour le petrole","Passage entre Indonesie et Malaisie, 1/4 du trafic mondial"], correct:"Relie Mediterranee et mer Rouge"},
+      {left:"Canal de Panama", options:["Relie Atlantique et Pacifique","Relie Mediterranee et mer Rouge","Sortie du golfe Persique, cle pour le petrole","Passage entre Indonesie et Malaisie, 1/4 du trafic mondial"], correct:"Relie Atlantique et Pacifique"}
+    ]
+  },
+  { type:'data', points:2,
+    prompt:"A partir des reperes du module :",
+    tableHtml:`<table class="data"><tr><th>Port</th><th>Statut</th></tr>
+      <tr><td>Shanghai</td><td>1er port mondial</td></tr>
+      <tr><td>Rotterdam</td><td>1er port europeen</td></tr>
+      <tr><td>Anvers-Bruges</td><td>2e port europeen</td></tr></table>`,
+    subquestions:[
+      {prompt:"Quel est le premier port europeen a conteneurs ?", accepted:["rotterdam"]},
+      {prompt:"Dans quel pays se trouve le premier port mondial a conteneurs ?", accepted:["chine"]}
+    ]
+  },
+  { type:'classify', points:3,
+    prompt:"Pour chacun des elements suivants concernant la Belgique face a la mondialisation, indique s'il s'agit d'un atout ou d'une contrainte.",
+    items:[
+      {text:"Le port d'Anvers-Bruges, 2e port europeen a conteneurs", correct:"Atout"},
+      {text:"L'absence de reserves de petrole et de gaz dans le sous-sol", correct:"Contrainte"},
+      {text:"Un acces direct a la mer du Nord via l'estuaire de l'Escaut", correct:"Atout"},
+      {text:"Un reseau dense de voies navigables, ferroviaires et routieres vers l'interieur de l'Europe", correct:"Atout"},
+      {text:"La dependance a des importations d'energie transportees sur de tres longues distances", correct:"Contrainte"}
+    ]
+  },
+  { type:'open', points:3,
+    prompt:"Explique, en 4 a 5 phrases, pourquoi la position portuaire de la Belgique (Anvers) constitue un atout dans la mondialisation, malgre l'absence de ressources energetiques propres.",
+    keywordGroups:[["atout"],["anvers","port"],["flux","mondialisation","echanges"],["mer du nord","escaut"]],
+    modelAnswer:"Meme si la Belgique manque de ressources energetiques dans son sous-sol, elle beneficie d'un atout majeur dans la mondialisation grace au port d'Anvers-Bruges, le deuxieme port europeen a conteneurs. Sa position sur l'estuaire de l'Escaut lui donne un acces direct a la mer du Nord, point d'entree de flux de marchandises venus du monde entier. Ce port est relie a un reseau dense de voies navigables, ferroviaires et routieres qui distribue les marchandises vers l'interieur de l'Europe. La Belgique illustre ainsi qu'un pays peut transformer une position geographique favorable en atout economique majeur, independamment de ses ressources naturelles."
+  }
+];
+
+GeoEngine.initModule({
+  id: 'm2-mondialisation',
+  eyebrow: "Geographie &middot; 5e annee &middot; Module 2/4 &middot; Reseau libre confessionnel (FESeC)",
+  title: "Les flux de marchandises et la mondialisation",
+  subtitle: "Deuxieme module du programme de 5e annee. 60% requis pour debloquer le module suivant.",
+  introHtml: `
+    <p>Ce module poursuit le theme de 5e annee en abordant le concept de <strong>mondialisation</strong> a travers les flux de marchandises : comment decrire un flux, pourquoi certains points du globe concentrent l'essentiel du commerce mondial, et comment la Belgique, malgre sa contrainte energetique (module 1), tire un atout majeur de sa position portuaire.</p>
+    <div class="callout warn">
+      <strong>Precision honnete :</strong> comme pour le module 1, il n'existe pas de banque officielle d'examens de geographie en FWB. Les questions sont construites a partir des types de taches du programme FESeC.
+    </div>
+  `,
+  examTitle: "les flux de marchandises et la mondialisation",
+  passThreshold: 60,
+  theorySlides, flashcardBank, gameRounds, exerciseBank, examBank,
+  hubHref: 'index.html',
+  nextHref: 'module-3.html',
+  nextTitle: 'Les flux de population et les migrations',
+  footerHtml: 'Module 2/4 (5e) &middot; programme officiel FESeC 2018 (D/2018/7362/3/15) &middot; ressource privee pour etude a domicile.<br>Fonds de carte : "BlankMap-World-Equirectangular", John Harvey, domaine public (CC0), Wikimedia Commons.'
+});
+</script>
+</body>
+</html>
