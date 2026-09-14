@@ -32,8 +32,8 @@ const theorySlides = [
   html: `
     <table class="data">
       <tr><th>Concept</th><th>Definition</th></tr>
-      <tr><td><strong>Developpement</strong></td><td>L'amelioration des conditions de vie d'une population (acces aux ressources, aux services, au niveau de vie).</td></tr>
-      <tr><td><strong>Developpement durable</strong></td><td>Un developpement qui repond aux besoins du present sans compromettre la capacite des generations futures a repondre aux leurs.</td></tr>
+      <tr><td><strong class="term" data-def="Le developpement, c'est l'amelioration des conditions de vie d'une population : acces aux ressources, aux services, au niveau de vie.">Developpement</strong></td><td>L'amelioration des conditions de vie d'une population (acces aux ressources, aux services, au niveau de vie).</td></tr>
+      <tr><td><strong class="term" data-def="Le developpement durable, c'est un developpement qui repond aux besoins du present sans compromettre la capacite des generations futures a repondre aux leurs.">Developpement durable</strong></td><td>Un developpement qui repond aux besoins du present sans compromettre la capacite des generations futures a repondre aux leurs.</td></tr>
     </table>
     <div class="callout">
       Un amenagement peut favoriser le developpement immediat d'un territoire (emplois, revenus, acces a une ressource) tout en posant question pour le developpement durable, si son cout environnemental futur est trop eleve (epuisement d'une ressource, pollution, aggravation d'un risque).
@@ -52,7 +52,7 @@ const theorySlides = [
     <div class="callout">
       <strong>Etude de cas : Deepwater Horizon (golfe du Mexique, 2010).</strong> L'explosion d'une plateforme de forage petrolier en eaux profondes a provoque l'une des plus importantes marees noires de l'histoire, avec des consequences durables sur les ecosystemes marins et cotiers. Cet amenagement, construit pour repondre a la demande mondiale de petrole (module 1), a transforme un risque technologique potentiel en catastrophe reelle.
     </div>
-    <p>Ce cas illustre le concept de <strong>vulnerabilite</strong> : plus un amenagement est complexe et expose (ici, un forage en eaux tres profondes), plus le risque technologique associe est eleve si un incident survient.</p>
+    <p>Ce cas illustre le concept de <strong class="term" data-def="La vulnerabilite, c'est le fait qu'un territoire ou un amenagement soit expose et fragile face a un risque : plus il est complexe et expose, plus le risque est eleve si un incident survient.">vulnerabilite</strong> : plus un amenagement est complexe et expose (ici, un forage en eaux tres profondes), plus le risque technologique associe est eleve si un incident survient.</p>
   `,
   postRender: function(helpers){
     helpers.renderWorldMap(document.getElementById('theory-map-3'), {
@@ -84,7 +84,7 @@ const theorySlides = [
 {
   title: "5. Identifier des espaces a risque grace a un modele spatial",
   html: `
-    <p>Rappel du 2e degre : le modele de la <strong>tectonique des plaques</strong> permet d'expliquer la repartition des seismes et des volcans dans le monde, notamment le long des zones de collision et de subduction entre plaques.</p>
+    <p>Rappel du 2e degre : le modele de la <strong class="term" data-def="La tectonique des plaques est un modele qui explique la repartition des seismes et des volcans dans le monde, notamment le long des zones de collision entre plaques.">tectonique des plaques</strong> permet d'expliquer la repartition des seismes et des volcans dans le monde, notamment le long des zones de collision et de subduction entre plaques.</p>
     <div class="callout">
       Un amenagement construit dans une zone de fort risque tectonique (centrale nucleaire, grand barrage, plateforme petroliere) doit tenir compte de ce risque naturel en plus du risque technologique qu'il cree lui-meme. Le cumul des deux peut rendre un territoire particulierement vulnerable.
     </div>
