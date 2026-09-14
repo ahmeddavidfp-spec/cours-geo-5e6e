@@ -39,6 +39,8 @@ a.hub-link{
   margin-bottom: 10px;
 }
 a.hub-link:hover{ text-decoration: underline; }
+.top-nav{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; }
+.top-nav a.hub-link{ margin-bottom: 10px; }
 header.top{
   display:flex;
   flex-direction:column;
